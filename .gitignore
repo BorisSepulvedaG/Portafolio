@@ -1,0 +1,23 @@
+# Dependencias y entornos
+node_modules/
+.env
+.env.local
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Builds y temporales
+dist/
+build/
+.cache/
