@@ -4,8 +4,6 @@
  * Funcionalidades:
  * - Gestor de tema Claro/Oscuro con persistencia en localStorage y detección de SO
  * - Barra de progreso de lectura en scroll superior
- * - Efecto de foco lumínico (Spotlight cursor) en tarjetas
- * - Filtro dinámico de proyectos destacados
  * - Copia rápida de correo con feedback mediante notificaciones Toast accesibles
  * - Navegación móvil con soporte para teclado (Escape) y atributos ARIA
  * - Observador de intersección para enlaces activos de navegación
@@ -53,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentTheme = rootHtml.getAttribute('data-theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             applyTheme(newTheme);
-            showToast(`Tema cambiado a ${newTheme === 'dark' ? 'oscuro' : 'claro'}`);
         });
     }
 
@@ -109,52 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* --- 4. EFECTO SPOTLIGHT DINÁMICO EN TARJETAS --- */
-    const spotlightCards = document.querySelectorAll('.spotlight-card');
-
-    spotlightCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
-
-
-    /* --- 5. FILTRADO INTERACTIVO DE PROYECTOS --- */
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    if (filterButtons.length > 0 && projectCards.length > 0) {
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Actualizar estado activo en botones
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-selected', 'false');
-                });
-                button.classList.add('active');
-                button.setAttribute('aria-selected', 'true');
-
-                const filterValue = button.getAttribute('data-filter');
-
-                // Filtrar tarjetas
-                projectCards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    if (filterValue === 'all' || category === filterValue) {
-                        card.classList.remove('is-hidden');
-                    } else {
-                        card.classList.add('is-hidden');
-                    }
-                });
-            });
-        });
-    }
-
-
-    /* --- 6. COPIAR CORREO AL PORTAPAPELES & NOTIFICACIÓN TOAST --- */
+    /* --- 4. COPIAR CORREO AL PORTAPAPELES & NOTIFICACIÓN TOAST --- */
     const toastElement = document.getElementById('toast-notification');
     const toastMessage = document.getElementById('toast-message');
     let toastTimeout = null;
@@ -223,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* --- 7. RESALTADO AUTOMÁTICO DE SECCIÓN ACTIVA EN NAVBAR (SPY) --- */
+    /* --- 5. RESALTADO AUTOMÁTICO DE SECCIÓN ACTIVA EN NAVBAR (SPY) --- */
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -254,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* --- 8. ACTUALIZACIÓN AUTOMÁTICA DEL AÑO DE COPYRIGHT --- */
+    /* --- 6. ACTUALIZACIÓN AUTOMÁTICA DEL AÑO DE COPYRIGHT --- */
     const yearElement = document.getElementById('current-year');
     if (yearElement) {
         yearElement.textContent = String(new Date().getFullYear());
