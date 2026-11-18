@@ -56,8 +56,6 @@
     <!-- Enlace accesible para lectores de pantalla y navegación por teclado -->
     <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
-    <!-- Barra de progreso de lectura superior -->
-    <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
 
     <!-- ENCABEZADO Y NAVEGACIÓN -->
     <header class="site-header" id="header">
@@ -68,9 +66,6 @@
                     <span class="logo-text">Boris Sepúlveda</span>
                 </a>
 
-                <div class="nav-status-badge d-none-mobile" title="Estado laboral actual">
-                    <span class="status-label">Busco mi primer puesto frontend · abierto a freelance</span>
-                </div>
 
                 <div class="nav-right">
                     <ul id="nav-menu" class="nav-menu">
@@ -115,6 +110,13 @@
         <!-- SECCIÓN HERO -->
         <section id="inicio" class="hero-section" aria-labelledby="hero-heading">
             <div class="container hero-container">
+                <div class="sheet-head">
+                    <span class="sheet-cell" aria-hidden="true"><span class="sheet-key">Hoja</span> 1 de 6</span>
+                    <span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Estado</span> Busco mi primer puesto frontend · abierto a freelance</span>
+                    <span class="sheet-cell"><span class="sheet-key">Rol</span> Frontend junior</span>
+                    <span class="sheet-cell"><span class="sheet-key">Lugar</span> Los Lagos, Chile</span>
+                </div>
+
                 <h1 id="hero-heading" class="hero-title">
                     Hago interfaces web claras y las llevo
                     <span class="text-accent">hasta el deploy</span>.
@@ -158,6 +160,8 @@
         <!-- SECCIÓN PROYECTO: MI MENÚ DIGITAL -->
         <section id="proyectos" class="section-container" aria-labelledby="proyectos-heading">
             <div class="container">
+                <div class="sheet-head"><span class="sheet-cell"><span class="sheet-key">Hoja</span> 2 de 6</span><span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Proyecto</span> Mi Menú Digital</span><span class="sheet-cell"><span class="sheet-key">Estado</span> En fase de auditoría · v1.7.0</span><span class="sheet-cell"><span class="sheet-key">Por</span> B. Sepúlveda</span></div>
+
                 <div class="section-header">
                     <h2 id="proyectos-heading" class="section-title">Mi Menú Digital</h2>
                     <p class="section-subtitle">
@@ -167,20 +171,15 @@
                 </div>
 
                 <article class="case-card" aria-label="Caso: Mi Menú Digital">
-                    <div class="case-status">
-                        <span class="status-chip chip-live">
-                            <span class="status-indicator" aria-hidden="true"></span>
-                            En fase de auditoría · v1.7.0
-                        </span>
-                        <!-- Demo de solo lectura (ADR-003 de Mi Menú Digital). Cambiar al dominio final cuando salga a producción. -->
-                        <a href="https://auditoria.mi-menu-digital.online/menu/demo" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary">
-                            <span>Probar la demo</span>
-                            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="visually-hidden">(se abre en una pestaña nueva)</span>
-                        </a>
-                    </div>
+                    <!-- Demo de solo lectura (ADR-003 de Mi Menú Digital). Cambiar al dominio final cuando salga a producción. -->
+                    <a href="https://auditoria.mi-menu-digital.online/menu/demo" target="_blank" rel="noopener noreferrer nofollow" class="case-answer">
+                        <span class="case-answer-label">Resultado</span>
+                        <span class="case-answer-action">Probar la demo</span>
+                        <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+                    </a>
 
                     <dl class="case-details">
                         <div class="case-item">
@@ -229,8 +228,10 @@
         </section>
 
         <!-- SECCIÓN PARA NEGOCIOS -->
-        <section id="servicios" class="section-container section-alt" aria-labelledby="servicios-heading">
+        <section id="servicios" class="section-container" aria-labelledby="servicios-heading">
             <div class="container">
+                <div class="sheet-head" aria-hidden="true"><span class="sheet-cell"><span class="sheet-key">Hoja</span> 3 de 6</span><span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Proyecto</span> Para negocios</span><span class="sheet-cell"><span class="sheet-key">Por</span> B. Sepúlveda</span><span class="sheet-cell"><span class="sheet-key">Fecha</span> 2026</span></div>
+
                 <div class="section-header">
                     <h2 id="servicios-heading" class="section-title">Qué puedo hacer por tu negocio</h2>
                     <p class="section-subtitle">
@@ -259,13 +260,15 @@
                     </div>
                 </div>
 
-                <a href="#contacto" class="btn btn-primary offer-cta">Escríbeme por correo</a>
+                <a href="#contacto" class="btn btn-primary offer-cta"><span>Escríbeme por correo</span></a>
             </div>
         </section>
 
         <!-- SECCIÓN SOBRE MÍ -->
         <section id="sobre-mi" class="section-container" aria-labelledby="sobre-mi-heading">
             <div class="container">
+                <div class="sheet-head" aria-hidden="true"><span class="sheet-cell"><span class="sheet-key">Hoja</span> 4 de 6</span><span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Proyecto</span> Sobre mí</span><span class="sheet-cell"><span class="sheet-key">Por</span> B. Sepúlveda</span><span class="sheet-cell"><span class="sheet-key">Fecha</span> 2026</span></div>
+
                 <div class="section-header">
                     <h2 id="sobre-mi-heading" class="section-title">Sobre mí</h2>
                 </div>
@@ -314,6 +317,8 @@
         <!-- SECCIÓN COLABORADORES (autorizado por Rodrigo / SirMofin) -->
         <section id="colaboradores" class="section-container" aria-labelledby="colaboradores-heading">
             <div class="container">
+                <div class="sheet-head" aria-hidden="true"><span class="sheet-cell"><span class="sheet-key">Hoja</span> 5 de 6</span><span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Proyecto</span> Colaboradores</span><span class="sheet-cell"><span class="sheet-key">Por</span> B. Sepúlveda</span><span class="sheet-cell"><span class="sheet-key">Fecha</span> 2026</span></div>
+
                 <div class="section-header">
                     <h2 id="colaboradores-heading" class="section-title">Colaboradores</h2>
                 </div>
@@ -339,6 +344,8 @@
         <!-- SECCIÓN CONTACTO -->
         <section id="contacto" class="section-container" aria-labelledby="contacto-heading">
             <div class="container contact-container">
+                <div class="sheet-head" aria-hidden="true"><span class="sheet-cell"><span class="sheet-key">Hoja</span> 6 de 6</span><span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Proyecto</span> Contacto</span><span class="sheet-cell"><span class="sheet-key">Por</span> B. Sepúlveda</span><span class="sheet-cell"><span class="sheet-key">Fecha</span> 2026</span></div>
+
                 <div class="section-header text-center">
                     <h2 id="contacto-heading" class="section-title">Contacto</h2>
                     <p class="section-subtitle">
@@ -382,7 +389,6 @@
                                 <span class="channel-title">GitHub</span>
                                 <span class="channel-handle">@BorisSepulvedaG</span>
                             </div>
-                            <span class="channel-arrow" aria-hidden="true">→</span>
                         </a>
 
                         <a href="https://www.linkedin.com/in/boris-sepulveda-79253a2aa/" target="_blank" rel="noopener noreferrer" class="channel-card">
@@ -395,7 +401,6 @@
                                 <span class="channel-title">LinkedIn</span>
                                 <span class="channel-handle">Boris Sepúlveda</span>
                             </div>
-                            <span class="channel-arrow" aria-hidden="true">→</span>
                         </a>
                     </div>
                 </div>
@@ -433,10 +438,6 @@
                 <p class="copyright-text">
                     &copy; <span id="current-year">2026</span> Boris Sepúlveda · @bruwuleeh · Vértice Software
                 </p>
-                <div class="footer-badge">
-                    <span class="badge-dot" aria-hidden="true"></span>
-                    <span>Desplegado en Cloudflare Pages</span>
-                </div>
             </div>
         </div>
     </footer>
