@@ -21,3 +21,5 @@ dist/
 build/
 .cache/
 
+# Capturas originales sin recortar (pueden traer datos de la cuenta)
+assets/Screenshot*
