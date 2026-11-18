@@ -1835,3 +1835,49 @@ body {
     margin-right: 8px;
     color: var(--text-primary);
 }
+
+/* --- FIGURAS DEL CASO: CAPTURAS PEGADAS EN LA HOJA ---
+   Cada captura va enmarcada como una foto pegada en el cuaderno,
+   con su pie numerado como las figuras de un informe técnico. */
+
+.case-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 32px;
+    margin-bottom: 40px;
+    align-items: start;
+}
+
+.case-figure {
+    margin: 0;
+}
+
+.case-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--ink-rule);
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-card);
+}
+
+.case-figure figcaption {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.fig-num {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-right: 6px;
+}
+
+@media (max-width: 768px) {
+    .case-gallery {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
