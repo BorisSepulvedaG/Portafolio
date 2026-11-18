@@ -17,6 +17,8 @@
 
 /assets/*
   # Imágenes y CV cambian poco: un día de caché.
+  # '! Cache-Control' quita el valor heredado de /* para que no se junten dos cachés.
+  ! Cache-Control
   Cache-Control: public, max-age=86400
 
 # Las vistas previas de Cloudflare (*.pages.dev) no deben aparecer en buscadores.
