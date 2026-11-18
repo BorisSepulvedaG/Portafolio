@@ -323,8 +323,8 @@ button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: var(--radius-md);
     background-color: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -358,9 +358,9 @@ button {
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 40px;
-    height: 40px;
-    padding: 8px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
     border-radius: var(--radius-md);
     background-color: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -544,16 +544,6 @@ button {
     line-height: 1.6;
 }
 
-/* --- SUPERFICIE DE TARJETA --- */
-.surface-card {
-    position: relative;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
-}
-
 .feature-bullets {
     list-style: none;
     display: flex;
@@ -624,7 +614,7 @@ button {
 }
 
 .contact-card {
-    padding: 48px;
+    padding: 0;
 }
 
 .contact-card-top {
@@ -662,8 +652,10 @@ button {
 .btn-copy-inline {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
-    padding: 6px 14px;
+    min-height: 44px;
+    padding: 10px 16px;
     border-radius: var(--radius-sm);
     background-color: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -783,6 +775,8 @@ button {
 }
 
 .footer-links a {
+    display: inline-block;
+    padding: 10px 0;
     font-size: 0.9rem;
     color: var(--text-secondary);
 }
@@ -859,16 +853,20 @@ button {
 }
 
 .toast-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background-color: var(--accent-emerald);
-    color: var(--text-inverted);
-    font-size: 0.8rem;
-    font-weight: 700;
+    flex-shrink: 0;
+    color: var(--accent-emerald);
+}
+
+/* --- SUPERFICIES DEL NAVEGADOR --- */
+:root {
+    accent-color: var(--accent-emerald);
+    caret-color: var(--accent-emerald);
+    scrollbar-color: var(--border-medium) var(--bg-main);
+}
+
+::selection {
+    background-color: var(--accent-emerald-medium);
+    color: var(--text-primary);
 }
 
 /* ==========================================================================
@@ -1077,7 +1075,7 @@ button {
     }
 
     .contact-card {
-        padding: 32px 20px;
+        padding: 0;
     }
 
     .case-card {

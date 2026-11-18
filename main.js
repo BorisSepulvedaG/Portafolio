@@ -17,30 +17,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const rootHtml = document.documentElement;
     const STORAGE_KEY = 'bruwuleeh_theme';
 
+    /** Lee la elección manual guardada; null si no hay o si el almacenamiento está bloqueado. */
+    function getSavedTheme() {
+        try {
+            const value = localStorage.getItem(STORAGE_KEY);
+            return value === 'light' || value === 'dark' ? value : null;
+        } catch (e) {
+            return null;
+        }
+    }
+
     /**
-     * Aplica el tema seleccionado al DOM y lo persiste
+     * Aplica el tema al DOM. Solo se guarda cuando la persona lo elige con el botón,
+     * para que la preferencia del sistema siga mandando mientras no haya elección manual.
      * @param {'dark' | 'light'} theme
+     * @param {boolean} persist
      */
-    function applyTheme(theme) {
+    function applyTheme(theme, persist = false) {
         rootHtml.setAttribute('data-theme', theme);
-        localStorage.setItem(STORAGE_KEY, theme);
+        if (persist) {
+            try {
+                localStorage.setItem(STORAGE_KEY, theme);
+            } catch (e) {
+                /* Sin almacenamiento: el tema dura solo esta visita */
+            }
+        }
         if (themeToggleBtn) {
             themeToggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
         }
     }
 
-    // Inicializar tema: preferencia guardada > preferencia del sistema > 'dark'
-    const savedTheme = localStorage.getItem(STORAGE_KEY);
-    if (savedTheme === 'light' || savedTheme === 'dark') {
-        applyTheme(savedTheme);
-    } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        applyTheme(prefersDark ? 'dark' : 'light');
-    }
+    // theme-init.js ya fijó el tema antes de pintar; aquí solo se sincroniza la etiqueta del botón
+    applyTheme(rootHtml.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
 
-    // Escuchar cambios en la preferencia del sistema operativo si no hay elección manual previa
+    // Seguir la preferencia del sistema mientras no haya elección manual
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem(STORAGE_KEY)) {
+        if (!getSavedTheme()) {
             applyTheme(e.matches ? 'dark' : 'light');
         }
     });
@@ -50,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggleBtn.addEventListener('click', () => {
             const currentTheme = rootHtml.getAttribute('data-theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            applyTheme(newTheme);
+            applyTheme(newTheme, true);
         });
     }
 
@@ -147,8 +159,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 textArea.style.left = '-9999px';
                 document.body.appendChild(textArea);
                 textArea.select();
-                document.execCommand('copy');
+                const copied = document.execCommand('copy');
                 document.body.removeChild(textArea);
+                // execCommand devuelve false si el navegador no copió: no mostrar un éxito falso
+                if (!copied) {
+                    throw new Error('execCommand no pudo copiar');
+                }
             }
             showToast(successFeedback);
         } catch (err) {

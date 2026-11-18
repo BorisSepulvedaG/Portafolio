@@ -25,6 +25,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&family=Bricolage+Grotesque:opsz,wght@12..96,600..700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Tema antes del primer pintado (evita parpadeo en tema claro) -->
+    <script src="theme-init.js"></script>
+
     <!-- Hoja de estilos principal -->
     <link rel="stylesheet" href="styles.css">
 
@@ -318,7 +321,7 @@
                     </p>
                 </div>
 
-                <div class="contact-card surface-card">
+                <div class="contact-card">
                     <div class="contact-card-top">
                         <p class="contact-email-prompt">
                             Escríbeme directamente a mi correo principal:
@@ -407,7 +410,9 @@
 
     <!-- Elemento flotante para notificaciones (Toast) accesible -->
     <div id="toast-notification" class="toast-notification" role="status" aria-live="polite">
-        <span class="toast-icon">✓</span>
+        <svg class="toast-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
         <span class="toast-message" id="toast-message">Texto copiado al portapapeles</span>
     </div>
 
