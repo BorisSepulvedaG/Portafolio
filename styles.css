@@ -985,6 +985,83 @@ button {
     color: var(--accent-emerald);
 }
 
+/* --- DESCARGA DEL CV --- */
+.cv-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    margin-top: 16px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--border-medium);
+    transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+}
+
+.cv-link:hover {
+    color: var(--accent-emerald);
+    text-decoration-color: currentColor;
+}
+
+/* En el hero el enlace va pegado a los botones, no a 56px de distancia */
+.hero-actions + .cv-link {
+    display: flex;
+    width: fit-content;
+    margin-top: -40px;
+}
+
+.cv-link-contact {
+    margin-top: 20px;
+}
+
+/* --- COLABORADORES --- */
+.collab-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 28px;
+    padding: 28px 32px;
+    max-width: 860px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+}
+
+.collab-logo {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    background-color: #ffffff;
+    padding: 6px;
+}
+
+.collab-name {
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+}
+
+.collab-desc {
+    margin-bottom: 14px;
+}
+
+.collab-person {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+}
+
+.collab-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 /* Aviso de error al copiar: otro ícono y color, para no parecer un éxito */
 .toast-icon-error,
 .toast-notification.is-error .toast-icon-ok {
@@ -1110,6 +1187,16 @@ button {
     .offer-layout {
         grid-template-columns: 1fr;
         gap: 32px;
+    }
+
+    .collab-card {
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+        padding: 24px 20px;
+    }
+
+    .collab-link {
+        grid-column: 1 / -1;
     }
 
     .case-details {
