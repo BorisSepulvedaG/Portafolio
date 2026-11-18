@@ -1677,9 +1677,7 @@ body {
 }
 
 /* Cifras de formulario alineadas */
-.sheet-head,
-.about-text,
-.tools-list {
+.sheet-head {
     font-variant-numeric: tabular-nums;
 }
 
@@ -1751,4 +1749,89 @@ body {
         order: 4;
         grid-column: 1 / -1;
     }
+}
+
+/* --- ÍCONOS DE LÍNEA: CALIDEZ SIN SALIR DEL CUADERNO ---
+   Un solo set de trazo fino, en tinta. El de cada título de hoja va sobre
+   un toque de resaltador; el resto acompaña al texto sin competir con él. */
+
+.icon-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.icon {
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: -0.18em;
+}
+
+/* Título de hoja: ícono sobre un cuadro de resaltador */
+.title-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.15em;
+    height: 1.15em;
+    margin-right: 0.35em;
+    vertical-align: -0.12em;
+    border-radius: var(--radius-sm);
+    background-color: var(--highlight);
+    color: var(--text-primary);
+}
+
+.title-icon .icon {
+    width: 0.68em;
+    height: 0.68em;
+    stroke-width: 2;
+    vertical-align: 0;
+}
+
+/* Encabezado de hoja */
+.sheet-cell .icon {
+    width: 1em;
+    height: 1em;
+    margin-right: 6px;
+    color: var(--text-primary);
+}
+
+/* Caso: pasos y funciones */
+.case-item dt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.case-item dt::before {
+    content: none;
+}
+
+.case-features.has-icons li {
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.case-features.has-icons li::before {
+    content: none;
+}
+
+.case-features.has-icons .icon {
+    margin-top: 0.15em;
+    color: var(--text-primary);
+}
+
+/* Sobre mí y contacto */
+.tools-group dt .icon,
+.contact-email-prompt .icon {
+    margin-right: 8px;
+    color: var(--text-primary);
 }
