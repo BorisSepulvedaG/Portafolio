@@ -3,9 +3,6 @@
  * PORTAFOLIO BORIS SEPÚLVEDA · LÓGICA E INTERACTIVIDAD (ES6+)
  * Funcionalidades:
  * - Gestor de tema Claro/Oscuro con persistencia en localStorage y detección de SO
- * - Barra de progreso de lectura en scroll superior
- * - Efecto de foco lumínico (Spotlight cursor) en tarjetas
- * - Filtro dinámico de proyectos destacados
  * - Copia rápida de correo con feedback mediante notificaciones Toast accesibles
  * - Navegación móvil con soporte para teclado (Escape) y atributos ARIA
  * - Observador de intersección para enlaces activos de navegación
@@ -19,30 +16,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const rootHtml = document.documentElement;
     const STORAGE_KEY = 'bruwuleeh_theme';
 
+    /** Lee la elección manual guardada; null si no hay o si el almacenamiento está bloqueado. */
+    function getSavedTheme() {
+        try {
+            const value = localStorage.getItem(STORAGE_KEY);
+            return value === 'light' || value === 'dark' ? value : null;
+        } catch (e) {
+            return null;
+        }
+    }
+
     /**
-     * Aplica el tema seleccionado al DOM y lo persiste
+     * Aplica el tema al DOM. Solo se guarda cuando la persona lo elige con el botón,
+     * para que la preferencia del sistema siga mandando mientras no haya elección manual.
      * @param {'dark' | 'light'} theme
+     * @param {boolean} persist
      */
-    function applyTheme(theme) {
+    function applyTheme(theme, persist = false) {
         rootHtml.setAttribute('data-theme', theme);
-        localStorage.setItem(STORAGE_KEY, theme);
+        if (persist) {
+            try {
+                localStorage.setItem(STORAGE_KEY, theme);
+            } catch (e) {
+                /* Sin almacenamiento: el tema dura solo esta visita */
+            }
+        }
         if (themeToggleBtn) {
             themeToggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
         }
     }
 
-    // Inicializar tema: preferencia guardada > preferencia del sistema > 'dark'
-    const savedTheme = localStorage.getItem(STORAGE_KEY);
-    if (savedTheme === 'light' || savedTheme === 'dark') {
-        applyTheme(savedTheme);
-    } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        applyTheme(prefersDark ? 'dark' : 'light');
-    }
+    // theme-init.js ya fijó el tema antes de pintar; aquí solo se sincroniza la etiqueta del botón
+    applyTheme(rootHtml.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
 
-    // Escuchar cambios en la preferencia del sistema operativo si no hay elección manual previa
+    // Seguir la preferencia del sistema mientras no haya elección manual
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem(STORAGE_KEY)) {
+        if (!getSavedTheme()) {
             applyTheme(e.matches ? 'dark' : 'light');
         }
     });
@@ -52,31 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggleBtn.addEventListener('click', () => {
             const currentTheme = rootHtml.getAttribute('data-theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            applyTheme(newTheme);
-            showToast(`Tema cambiado a ${newTheme === 'dark' ? 'oscuro' : 'claro'}`);
+            applyTheme(newTheme, true);
         });
     }
-
-
-    /* --- 2. BARRA DE PROGRESO DE LECTURA --- */
-    const progressBar = document.getElementById('scroll-progress');
-    let ticking = false;
-
-    function updateScrollProgress() {
-        if (!progressBar) return;
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
-        ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(updateScrollProgress);
-            ticking = true;
-        }
-    }, { passive: true });
 
 
     /* --- 3. MENÚ DE NAVEGACIÓN MÓVIL (ACCESIBLE) --- */
@@ -109,52 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* --- 4. EFECTO SPOTLIGHT DINÁMICO EN TARJETAS --- */
-    const spotlightCards = document.querySelectorAll('.spotlight-card');
-
-    spotlightCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
-
-
-    /* --- 5. FILTRADO INTERACTIVO DE PROYECTOS --- */
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    if (filterButtons.length > 0 && projectCards.length > 0) {
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Actualizar estado activo en botones
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-selected', 'false');
-                });
-                button.classList.add('active');
-                button.setAttribute('aria-selected', 'true');
-
-                const filterValue = button.getAttribute('data-filter');
-
-                // Filtrar tarjetas
-                projectCards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    if (filterValue === 'all' || category === filterValue) {
-                        card.classList.remove('is-hidden');
-                    } else {
-                        card.classList.add('is-hidden');
-                    }
-                });
-            });
-        });
-    }
-
-
-    /* --- 6. COPIAR CORREO AL PORTAPAPELES & NOTIFICACIÓN TOAST --- */
+    /* --- 4. COPIAR CORREO AL PORTAPAPELES & NOTIFICACIÓN TOAST --- */
     const toastElement = document.getElementById('toast-notification');
     const toastMessage = document.getElementById('toast-message');
     let toastTimeout = null;
@@ -162,11 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Muestra una notificación emergente visual accesible
      * @param {string} message
+     * @param {'ok' | 'error'} type  El error usa otro ícono y dura más, para alcanzar a leer el correo
      */
-    function showToast(message) {
+    function showToast(message, type = 'ok') {
         if (!toastElement || !toastMessage) return;
 
         toastMessage.textContent = message;
+        toastElement.classList.toggle('is-error', type === 'error');
         toastElement.classList.add('is-visible');
 
         if (toastTimeout) {
@@ -175,33 +119,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
         toastTimeout = setTimeout(() => {
             toastElement.classList.remove('is-visible');
-        }, 3200);
+        }, type === 'error' ? 8000 : 3200);
     }
 
     /**
-     * Copia texto al portapapeles de manera segura
+     * Copia con el método antiguo (execCommand). Devuelve true solo si el navegador confirma la copia.
+     * @param {string} text
+     * @returns {boolean}
+     */
+    function legacyCopy(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.setAttribute('readonly', '');
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        let copied = false;
+        try {
+            copied = document.execCommand('copy');
+        } catch (e) {
+            copied = false;
+        }
+        document.body.removeChild(textArea);
+        return copied;
+    }
+
+    /**
+     * Copia texto al portapapeles: API moderna primero, método antiguo si falla o el permiso se niega.
+     * Si ninguno funciona, muestra el correo para que se pueda anotar.
      * @param {string} text
      * @param {string} successFeedback
      */
     async function copyToClipboard(text, successFeedback = '¡Copiado al portapapeles!') {
-        try {
-            if (navigator.clipboard && window.isSecureContext) {
+        let copied = false;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            try {
                 await navigator.clipboard.writeText(text);
-            } else {
-                // Fallback para entornos donde no está disponible el API moderna
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                textArea.style.position = 'fixed';
-                textArea.style.left = '-9999px';
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
+                copied = true;
+            } catch (e) {
+                copied = false; // p. ej. permiso negado: se intenta el método antiguo
             }
+        }
+
+        if (!copied) {
+            copied = legacyCopy(text);
+        }
+
+        if (copied) {
             showToast(successFeedback);
-        } catch (err) {
-            console.error('Error al intentar copiar:', err);
-            showToast(`Correo: ${text}`);
+        } else {
+            showToast(`No pude copiar. Mi correo es ${text}`, 'error');
         }
     }
 
@@ -223,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* --- 7. RESALTADO AUTOMÁTICO DE SECCIÓN ACTIVA EN NAVBAR (SPY) --- */
+    /* --- 5. RESALTADO AUTOMÁTICO DE SECCIÓN ACTIVA EN NAVBAR (SPY) --- */
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -242,8 +211,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         const href = link.getAttribute('href');
                         if (href === `#${id}`) {
                             link.classList.add('active');
+                            link.setAttribute('aria-current', 'true');
                         } else {
                             link.classList.remove('active');
+                            link.removeAttribute('aria-current');
                         }
                     });
                 }
@@ -254,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* --- 8. ACTUALIZACIÓN AUTOMÁTICA DEL AÑO DE COPYRIGHT --- */
+    /* --- 6. ACTUALIZACIÓN AUTOMÁTICA DEL AÑO DE COPYRIGHT --- */
     const yearElement = document.getElementById('current-year');
     if (yearElement) {
         yearElement.textContent = String(new Date().getFullYear());

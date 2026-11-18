@@ -1,0 +1,29 @@
+# Cabeceras de seguridad y caché para Cloudflare Pages.
+# Las lee Cloudflare al desplegar; no se sirve como archivo público.
+
+/*
+  # CSP: solo recursos propios, más Google Fonts (hoja de estilos y archivos de fuente).
+  # Sin 'unsafe-inline' en scripts: theme-init.js y main.js son externos; el JSON-LD es un
+  # bloque de datos (application/ld+json) y el navegador no lo ejecuta.
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  # Revalidar siempre HTML, CSS y JS: evita que una visita que vuelve vea textos antiguos.
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/*
+  # Imágenes y CV cambian poco: un día de caché.
+  # '! Cache-Control' quita el valor heredado de /* para que no se junten dos cachés.
+  ! Cache-Control
+  Cache-Control: public, max-age=86400
+
+# Las vistas previas de Cloudflare (*.pages.dev) no deben aparecer en buscadores.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
