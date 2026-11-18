@@ -1209,7 +1209,7 @@ button {
 
 .footer-top {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap: 48px;
     margin-bottom: 56px;
 }
@@ -1339,6 +1339,107 @@ button {
 }
 
 /* ==========================================================================
+   CASO DE PROYECTO, SOBRE MÍ Y OFERTA
+   ========================================================================== */
+
+.case-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+}
+
+.case-status {
+    margin-bottom: 28px;
+}
+
+.case-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 36px;
+}
+
+.case-item dt {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.case-item dd {
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+.case-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 24px;
+}
+
+.btn.is-pending {
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
+/* Marcador visible de contenido pendiente: no debe llegar a main */
+.todo-marker {
+    outline: 1px dashed currentColor;
+    outline-offset: 2px;
+    border-radius: 4px;
+    font-style: italic;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.about-text p {
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    max-width: 65ch;
+    margin-bottom: 18px;
+}
+
+.tools-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tools-group dt {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.tools-group dd {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.offer-list {
+    max-width: 680px;
+}
+
+.offer-list li {
+    font-size: 1rem;
+}
+
+.nav-link,
+.status-label {
+    white-space: nowrap;
+}
+
+/* ==========================================================================
    RESPONSIVE DESIGN (BREAKPOINTS)
    ========================================================================== */
 
@@ -1359,6 +1460,16 @@ button {
 
     .bento-card-main {
         grid-row: auto;
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    /* La pastilla de estado no cabe junto al menú en ancho tablet */
+    .nav-status-badge {
+        display: none;
     }
 
     .services-grid,
@@ -1451,6 +1562,15 @@ button {
 
     .contact-card {
         padding: 32px 20px;
+    }
+
+    .case-card {
+        padding: 28px 20px;
+    }
+
+    .case-details {
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 
     .email-display-box {
