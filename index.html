@@ -26,10 +26,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&family=Bricolage+Grotesque:opsz,wght@12..96,600..700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Tema antes del primer pintado (evita parpadeo en tema claro) -->
-    <script src="theme-init.js"></script>
+    <script src="theme-init.js?v=2.1.0"></script>
 
     <!-- Hoja de estilos principal -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2.1.0">
 
     <!-- Datos estructurados JSON-LD (SEO) -->
     <script type="application/ld+json">
@@ -52,6 +52,30 @@
     </script>
 </head>
 <body>
+
+    <!-- Íconos de línea (estilo Lucide, licencia ISC): se usan con <svg class="icon"><use href="#i-..."/></svg> -->
+    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+        <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+        <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+        <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="16" y="3" width="5" height="5" rx="1"/><rect x="3" y="16" width="5" height="5" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+        <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
+        <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+        <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
+        <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+        <symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+        <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><path d="M7 7h.01"/></symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2-10 5 10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol>
+        <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+        <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></symbol>
+        <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+        <symbol id="i-server" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01"/><path d="M6 18h.01"/></symbol>
+        <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></symbol>
+    </svg>
+
 
     <!-- Enlace accesible para lectores de pantalla y navegación por teclado -->
     <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
@@ -111,9 +135,9 @@
             <div class="container hero-container">
                 <div class="sheet-head">
                     <span class="sheet-cell" aria-hidden="true"><span class="sheet-key">Hoja</span> 1 de 5</span>
-                    <span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Estado</span> Busco mi primer puesto frontend · abierto a freelance</span>
-                    <span class="sheet-cell"><span class="sheet-key">Rol</span> Frontend junior</span>
-                    <span class="sheet-cell"><span class="sheet-key">Lugar</span> Los Lagos, Chile</span>
+                    <span class="sheet-cell sheet-cell-wide"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-search"/></svg><span class="sheet-key">Estado</span> Busco mi primer puesto frontend · abierto a freelance</span>
+                    <span class="sheet-cell"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-briefcase"/></svg><span class="sheet-key">Rol</span> Frontend junior</span>
+                    <span class="sheet-cell"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-map-pin"/></svg><span class="sheet-key">Lugar</span> Los Lagos, Chile</span>
                 </div>
 
                 <h1 id="hero-heading" class="hero-title">
@@ -162,7 +186,7 @@
                 <div class="sheet-head"><span class="sheet-cell"><span class="sheet-key">Hoja</span> 2 de 5</span><span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Proyecto</span> Mi Menú Digital</span><span class="sheet-cell"><span class="sheet-key">Estado</span> En fase de auditoría · v1.7.0</span><span class="sheet-cell"><span class="sheet-key">Por</span> B. Sepúlveda</span></div>
 
                 <div class="section-header">
-                    <h2 id="proyectos-heading" class="section-title">Mi Menú Digital</h2>
+                    <h2 id="proyectos-heading" class="section-title"><span class="title-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-qr"/></svg></span>Mi Menú Digital</h2>
                     <p class="section-subtitle">
                         Carta digital con QR para carros de comida rápida y locales gastronómicos. Reemplaza el menú en PDF o en imagen:
                         el local cambia precios y productos desde un panel, y el cliente siempre ve la versión vigente.
@@ -180,23 +204,55 @@
                         <span class="visually-hidden">(se abre en una pestaña nueva)</span>
                     </a>
 
+                    <!-- Capturas de la demo (datos ficticios); el panel va recortado sin datos de la cuenta -->
+                    <div class="case-gallery">
+                        <figure class="case-figure">
+                            <img src="assets/mi-menu-digital/carta-publica-1200.webp"
+                                 srcset="assets/mi-menu-digital/carta-publica-720.webp 720w, assets/mi-menu-digital/carta-publica-1200.webp 1135w"
+                                 sizes="(max-width: 768px) 100vw, 50vw"
+                                 width="1135" height="910" alt="Carta pública de la demo de Mi Menú Digital: portada del local, buscador, categorías y promociones con foto y precio" loading="lazy" decoding="async">
+                            <figcaption><span class="fig-num">Fig. 1</span> La carta que ve el cliente al escanear el QR.</figcaption>
+                        </figure>
+                        <figure class="case-figure">
+                            <img src="assets/mi-menu-digital/pedido-whatsapp-1200.webp"
+                                 srcset="assets/mi-menu-digital/pedido-whatsapp-720.webp 720w, assets/mi-menu-digital/pedido-whatsapp-1200.webp 790w"
+                                 sizes="(max-width: 768px) 100vw, 50vw"
+                                 width="790" height="670" alt="Pedido de la demo listo para enviarse al local por WhatsApp, con su estado y el total a pagar" loading="lazy" decoding="async">
+                            <figcaption><span class="fig-num">Fig. 2</span> El pedido se confirma y se envía al local por WhatsApp.</figcaption>
+                        </figure>
+                        <figure class="case-figure">
+                            <img src="assets/mi-menu-digital/panel-catalogo-1200.webp"
+                                 srcset="assets/mi-menu-digital/panel-catalogo-720.webp 720w, assets/mi-menu-digital/panel-catalogo-1200.webp 1200w"
+                                 sizes="(max-width: 768px) 100vw, 50vw"
+                                 width="1200" height="549" alt="Panel del local: catálogo de productos con categoría, precio e interruptor de disponibilidad" loading="lazy" decoding="async">
+                            <figcaption><span class="fig-num">Fig. 3</span> Panel del local: catálogo con disponibilidad por producto.</figcaption>
+                        </figure>
+                        <figure class="case-figure">
+                            <img src="assets/mi-menu-digital/panel-personalizacion-1200.webp"
+                                 srcset="assets/mi-menu-digital/panel-personalizacion-720.webp 720w, assets/mi-menu-digital/panel-personalizacion-1200.webp 1200w"
+                                 sizes="(max-width: 768px) 100vw, 50vw"
+                                 width="1200" height="549" alt="Panel del local: temas de color de la carta con vista previa en el celular" loading="lazy" decoding="async">
+                            <figcaption><span class="fig-num">Fig. 4</span> Panel del local: temas de la carta con vista previa en el celular.</figcaption>
+                        </figure>
+                    </div>
+
                     <dl class="case-details">
                         <div class="case-item">
-                            <dt>El problema</dt>
+                            <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg>El problema</dt>
                             <dd>
                                 Muchos carros de comida rápida publican su menú como PDF o imagen. Cada cambio de precio obliga a generar otra imagen,
                                 y las versiones viejas confunden al cliente. Con un menú dinámico el precio se cambia una sola vez y los productos sin stock se quitan al momento.
                             </dd>
                         </div>
                         <div class="case-item">
-                            <dt>Qué hice yo</dt>
+                            <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-wrench"/></svg>Qué hice yo</dt>
                             <dd>
                                 Diseñé, dirigí y desplegué el proyecto completo, como único desarrollador,
                                 con un flujo propio de ramas y una auditoría de seguridad antes de cada integración.
                             </dd>
                         </div>
                         <div class="case-item">
-                            <dt>Una decisión técnica</dt>
+                            <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-bulb"/></svg>Una decisión técnica</dt>
                             <dd>
                                 Los descuentos se calculan en el servidor. El frontend es público y se puede manipular, así que el cliente solo envía
                                 qué productos pide; el servidor elige la promoción y devuelve el total oficial. Quedó documentada como ADR-006.
@@ -204,12 +260,12 @@
                         </div>
                     </dl>
 
-                    <ul class="feature-bullets case-features" aria-label="Qué incluye">
-                        <li>Carta digital con QR y mesas</li>
-                        <li>Pedidos para retiro, delivery o mesa, con seguimiento y aviso por WhatsApp</li>
-                        <li>Panel en tiempo real para el local</li>
-                        <li>Tres planes: Básico, Estándar y Pro (promociones 2x1 y 3x2, combos, destacados y dashboard)</li>
-                        <li>Multi-local, roles de dueño y personal, y un modo demo de solo lectura</li>
+                    <ul class="feature-bullets case-features has-icons" aria-label="Qué incluye">
+                        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-qr"/></svg><span>Carta digital con QR y mesas</span></li>
+                        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-bag"/></svg><span>Pedidos para retiro, delivery o mesa, con seguimiento y aviso por WhatsApp</span></li>
+                        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-activity"/></svg><span>Panel en tiempo real para el local</span></li>
+                        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-tag"/></svg><span>Tres planes: Básico, Estándar y Pro (promociones 2x1 y 3x2, combos, destacados y dashboard)</span></li>
+                        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-layers"/></svg><span>Multi-local, roles de dueño y personal, y un modo demo de solo lectura</span></li>
                     </ul>
 
                     <div class="case-footer">
@@ -232,7 +288,7 @@
                 <div class="sheet-head" aria-hidden="true"><span class="sheet-cell"><span class="sheet-key">Hoja</span> 3 de 5</span><span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Proyecto</span> Sobre mí</span><span class="sheet-cell"><span class="sheet-key">Por</span> B. Sepúlveda</span><span class="sheet-cell"><span class="sheet-key">Fecha</span> 2026</span></div>
 
                 <div class="section-header">
-                    <h2 id="sobre-mi-heading" class="section-title">Sobre mí</h2>
+                    <h2 id="sobre-mi-heading" class="section-title"><span class="title-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-user"/></svg></span>Sobre mí</h2>
                 </div>
 
                 <div class="about-layout">
@@ -245,30 +301,27 @@
                             En paralelo administro un servidor en casa con Linux Mint y CasaOS, donde corro Nextcloud, Home Assistant, pi-hole y n8n en contenedores.
                             Ahí aprendí a desplegar, respaldar y arreglar cosas cuando fallan.
                         </p>
-                        <p>
-                            Reviso y entiendo todo lo que entra al código.
-                        </p>
                     </div>
 
                     <dl class="tools-list">
                         <div class="tools-group">
-                            <dt>Uso a diario</dt>
+                            <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-code"/></svg>Uso a diario</dt>
                             <dd>HTML, CSS, JavaScript, TypeScript, React, Vite, Tailwind, Git</dd>
                         </div>
                         <div class="tools-group">
-                            <dt>He usado en proyectos</dt>
+                            <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-database"/></svg>He usado en proyectos</dt>
                             <dd>Supabase (PostgreSQL, seguridad por filas, autenticación, tiempo real), SQL, Cloudflare Pages</dd>
                         </div>
                         <div class="tools-group">
-                            <dt>Base académica</dt>
+                            <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-book"/></svg>Base académica</dt>
                             <dd>Python, C#, PHP</dd>
                         </div>
                         <div class="tools-group">
-                            <dt>Infraestructura</dt>
+                            <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-server"/></svg>Infraestructura</dt>
                             <dd>Linux, contenedores, Nextcloud, pi-hole, n8n</dd>
                         </div>
                         <div class="tools-group">
-                            <dt>Cursando</dt>
+                            <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-award"/></svg>Cursando</dt>
                             <dd>Google Soporte de TI · Google Ciberseguridad</dd>
                         </div>
                     </dl>
@@ -282,7 +335,7 @@
                 <div class="sheet-head" aria-hidden="true"><span class="sheet-cell"><span class="sheet-key">Hoja</span> 4 de 5</span><span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Proyecto</span> Colaboradores</span><span class="sheet-cell"><span class="sheet-key">Por</span> B. Sepúlveda</span><span class="sheet-cell"><span class="sheet-key">Fecha</span> 2026</span></div>
 
                 <div class="section-header">
-                    <h2 id="colaboradores-heading" class="section-title">Colaboradores</h2>
+                    <h2 id="colaboradores-heading" class="section-title"><span class="title-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-users"/></svg></span>Colaboradores</h2>
                 </div>
 
                 <article class="collab-card">
@@ -309,7 +362,7 @@
                 <div class="sheet-head" aria-hidden="true"><span class="sheet-cell"><span class="sheet-key">Hoja</span> 5 de 5</span><span class="sheet-cell sheet-cell-wide"><span class="sheet-key">Proyecto</span> Contacto</span><span class="sheet-cell"><span class="sheet-key">Por</span> B. Sepúlveda</span><span class="sheet-cell"><span class="sheet-key">Fecha</span> 2026</span></div>
 
                 <div class="section-header text-center">
-                    <h2 id="contacto-heading" class="section-title">Contacto</h2>
+                    <h2 id="contacto-heading" class="section-title"><span class="title-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg></span>Contacto</h2>
                     <p class="section-subtitle">
                         Busco mi primer puesto como desarrollador frontend y tomo proyectos freelance pequeños. Escríbeme por correo o LinkedIn.
                     </p>
@@ -318,7 +371,7 @@
                 <div class="contact-card">
                     <div class="contact-card-top">
                         <p class="contact-email-prompt">
-                            Mi correo:
+                            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg>Mi correo:
                         </p>
                         <div class="email-display-box">
                             <a href="mailto:borissepg@gmail.com" class="direct-email-link" id="email-link">borissepg@gmail.com</a>
@@ -381,7 +434,7 @@
                         <span class="logo-text">Boris Sepúlveda</span>
                     </a>
                     <p class="footer-tagline">
-                        Portafolio hecho con HTML, CSS y JavaScript.
+                        Portafolio hecho a mano con HTML, CSS y JavaScript.
                     </p>
                 </div>
 
@@ -417,6 +470,6 @@
     </div>
 
     <!-- Script de interactividad y comportamiento -->
-    <script src="main.js"></script>
+    <script src="main.js?v=2.1.0"></script>
 </body>
 </html>
