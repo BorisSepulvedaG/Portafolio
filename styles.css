@@ -1371,6 +1371,10 @@ button {
     line-height: 1.65;
 }
 
+.case-features {
+    margin-bottom: 32px;
+}
+
 .case-footer {
     display: flex;
     flex-wrap: wrap;

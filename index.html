@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Desarrollador frontend junior e ingeniero en Informática. Trabajo con React, Vite y Tailwind. Proyecto en producción: Mi Menú Digital.">
+    <meta name="description" content="Desarrollador frontend junior e ingeniero en Informática. Trabajo con React, TypeScript, Vite y Tailwind. Proyecto principal: Mi Menú Digital.">
     <meta name="author" content="Boris Sepúlveda">
     <meta name="keywords" content="Boris Sepulveda, BrUwUleeh, Vertice Software, Desarrollador Frontend Junior, Frontend, React, Vite, Tailwind, JavaScript, Ingeniero en Informática, Chile">
     <meta name="robots" content="index, follow">
@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bruwuleeh.com/">
     <meta property="og:title" content="Boris Sepúlveda · Desarrollador Frontend Junior">
-    <meta property="og:description" content="Desarrollador frontend junior e ingeniero en Informática. Trabajo con React, Vite y Tailwind. Proyecto en producción: Mi Menú Digital.">
+    <meta property="og:description" content="Desarrollador frontend junior e ingeniero en Informática. Trabajo con React, TypeScript, Vite y Tailwind. Proyecto principal: Mi Menú Digital.">
     <meta property="og:locale" content="es_CL">
 
     <title>Boris Sepúlveda · Desarrollador Frontend Junior</title>
@@ -115,13 +115,13 @@
             <div class="ambient-glow" aria-hidden="true"></div>
             <div class="container hero-container">
                 <h1 id="hero-heading" class="hero-title">
-                    Hago interfaces web claras y las dejo funcionando
-                    <span class="text-accent">en producción</span>.
+                    Hago interfaces web claras y las llevo
+                    <span class="text-accent">hasta el deploy</span>.
                 </h1>
 
                 <p class="hero-description">
                     Soy <strong>Boris Sepúlveda</strong>, desarrollador frontend junior e ingeniero en Informática (AIEP).
-                    Trabajo principalmente con React, Vite y Tailwind.
+                    Trabajo principalmente con React, TypeScript, Vite y Tailwind.
                     Antes de dedicarme a desarrollar hice soporte TI en Inglobo Chile y administro mi propio servidor Linux,
                     así que también me ocupo de lo que pasa después del deploy.
                 </p>
@@ -151,8 +151,8 @@
                     </div>
                     <div class="stat-divider" aria-hidden="true"></div>
                     <div class="stat-card">
-                        <span class="stat-number">1</span>
-                        <span class="stat-label">Producto en producción: Mi Menú Digital</span>
+                        <span class="stat-number">v1.7.0</span>
+                        <span class="stat-label">Mi Menú Digital, en fase de auditoría</span>
                     </div>
                     <div class="stat-divider" aria-hidden="true"></div>
                     <div class="stat-card">
@@ -174,8 +174,8 @@
                 <div class="section-header">
                     <h2 id="proyectos-heading" class="section-title">Mi Menú Digital</h2>
                     <p class="section-subtitle">
-                        Carta digital para locales gastronómicos. El local actualiza su menú desde un panel y los clientes lo ven al escanear un código QR.
-                        <!-- [confirmar] funciones reales: ¿stock?, ¿planes de suscripción? -->
+                        Carta digital con QR para carros de comida rápida y locales gastronómicos. Reemplaza el menú en PDF o en imagen:
+                        el local cambia precios y productos desde un panel, y el cliente siempre ve la versión vigente.
                     </p>
                 </div>
 
@@ -183,33 +183,50 @@
                     <div class="case-status">
                         <span class="status-chip chip-live">
                             <span class="status-indicator" aria-hidden="true"></span>
-                            En producción
+                            En fase de auditoría · v1.7.0
                         </span>
                     </div>
 
                     <dl class="case-details">
                         <div class="case-item">
                             <dt>El problema</dt>
-                            <dd><span class="todo-marker">[completar: por qué lo hiciste y para quién]</span></dd>
+                            <dd>
+                                Muchos carros de comida rápida publican su menú como PDF o imagen. Cada cambio de precio obliga a generar otra imagen,
+                                y las versiones viejas confunden al cliente. Con un menú dinámico el precio se cambia una sola vez y los productos sin stock se quitan al momento.
+                            </dd>
                         </div>
                         <div class="case-item">
                             <dt>Qué hice yo</dt>
-                            <dd><span class="todo-marker">[completar: diseño, frontend, base de datos, despliegue…]</span></dd>
+                            <dd>
+                                Diseñé, dirigí y desplegué el proyecto completo, como único desarrollador,
+                                con un flujo propio de ramas y una auditoría de seguridad antes de cada integración.
+                            </dd>
                         </div>
                         <div class="case-item">
                             <dt>Una decisión técnica</dt>
-                            <dd><span class="todo-marker">[completar: algo que elegiste y por qué]</span></dd>
+                            <dd>
+                                Los descuentos se calculan en el servidor. El frontend es público y se puede manipular, así que el cliente solo envía
+                                qué productos pide; el servidor elige la promoción y devuelve el total oficial. Quedó documentada como ADR-006.
+                            </dd>
                         </div>
                     </dl>
 
+                    <ul class="feature-bullets case-features" aria-label="Qué incluye">
+                        <li>Carta digital con QR y mesas</li>
+                        <li>Pedidos para retiro, delivery o mesa, con seguimiento y aviso por WhatsApp</li>
+                        <li>Panel en tiempo real para el local</li>
+                        <li>Tres planes: Básico, Estándar y Pro (promociones 2x1 y 3x2, combos, destacados y dashboard)</li>
+                        <li>Multi-local, roles de dueño y personal, y un modo demo de solo lectura</li>
+                    </ul>
+
                     <div class="case-footer">
-                        <!-- [confirmar] stack real del proyecto -->
                         <ul class="tech-stack-list" aria-label="Tecnologías empleadas">
-                            <li>React</li>
-                            <li>Vite</li>
-                            <li>Tailwind</li>
-                            <li>Supabase</li>
-                            <li>Cloudflare</li>
+                            <li>React 19</li>
+                            <li>TypeScript</li>
+                            <li>Vite 6</li>
+                            <li>Tailwind CSS 4</li>
+                            <li>Supabase (PostgreSQL + RLS)</li>
+                            <li>Cloudflare Pages</li>
                         </ul>
                         <!-- Reemplazar por <a href="URL-FINAL" target="_blank" rel="noopener noreferrer" class="btn btn-primary"> al confirmar la URL -->
                         <span class="btn btn-primary is-pending" aria-disabled="true">Ver sitio en vivo · <span class="todo-marker">[enlace pendiente]</span></span>
@@ -243,11 +260,11 @@
                     <dl class="tools-list">
                         <div class="tools-group">
                             <dt>Uso a diario</dt>
-                            <dd>HTML, CSS, JavaScript, React, Vite, Tailwind, Git</dd>
+                            <dd>HTML, CSS, JavaScript, TypeScript, React, Vite, Tailwind, Git</dd>
                         </div>
                         <div class="tools-group">
                             <dt>He usado en proyectos</dt>
-                            <dd>Supabase, SQL, Cloudflare Pages</dd>
+                            <dd>Supabase (PostgreSQL, seguridad por filas, autenticación, tiempo real), SQL, Cloudflare Pages</dd>
                         </div>
                         <div class="tools-group">
                             <dt>Base académica</dt>
