@@ -3,7 +3,6 @@
  * PORTAFOLIO BORIS SEPÚLVEDA · LÓGICA E INTERACTIVIDAD (ES6+)
  * Funcionalidades:
  * - Gestor de tema Claro/Oscuro con persistencia en localStorage y detección de SO
- * - Barra de progreso de lectura en scroll superior
  * - Copia rápida de correo con feedback mediante notificaciones Toast accesibles
  * - Navegación móvil con soporte para teclado (Escape) y atributos ARIA
  * - Observador de intersección para enlaces activos de navegación
@@ -65,27 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             applyTheme(newTheme, true);
         });
     }
-
-
-    /* --- 2. BARRA DE PROGRESO DE LECTURA --- */
-    const progressBar = document.getElementById('scroll-progress');
-    let ticking = false;
-
-    function updateScrollProgress() {
-        if (!progressBar) return;
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
-        ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(updateScrollProgress);
-            ticking = true;
-        }
-    }, { passive: true });
 
 
     /* --- 3. MENÚ DE NAVEGACIÓN MÓVIL (ACCESIBLE) --- */

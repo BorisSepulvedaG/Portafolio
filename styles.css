@@ -1,15 +1,22 @@
 /* ==========================================================================
-   PORTAFOLIO BORIS SEPÚLVEDA · SISTEMA DE DISEÑO & ESTILOS PROFESIONALES
-   Paleta: Acento Verde Esmeralda Exclusivo sobre Fondo Obsidiana
+   PORTAFOLIO BORIS SEPÚLVEDA · MUNDO VISUAL: CUADERNO DE INGENIERÍA
+   Papel de cálculo cuadriculado, tinta grafito y verde #10b981 como resaltador
    ========================================================================== */
 
-/* --- TOKENS DE COLOR & VARIABLES: TEMA OSCURO (POR DEFECTO) --- */
+/* --- TOKENS: CUADERNO DE INGENIERÍA, HOJA DE NOCHE (TEMA OSCURO POR DEFECTO) --- */
 :root {
-    --bg-main: #090d11;
-    --bg-alt: #0e141a;
-    --bg-card: #121920;
-    --bg-card-hover: #16202a;
-    --bg-elevated: #1a2530;
+    --bg-main: #0d1411;
+    --bg-alt: #111a16;
+    --bg-card: #131d19;
+    --bg-card-hover: #17231e;
+    --bg-elevated: #1a2721;
+
+    /* Cuadrícula del papel de cálculo: fina cada 24px, marcada cada 120px */
+    --grid-line: rgba(170, 210, 185, 0.085);
+    --grid-line-strong: rgba(170, 210, 185, 0.16);
+    --ink-rule: rgba(205, 225, 212, 0.34);
+    --margin-rule: rgba(16, 185, 129, 0.45);
+    --highlight: rgba(16, 185, 129, 0.34);
 
     /* Acento verde esmeralda (único color fijo de la marca) */
     --accent-emerald: #10b981;
@@ -19,33 +26,33 @@
     --accent-emerald-medium: rgba(16, 185, 129, 0.16);
     --accent-emerald-border: rgba(16, 185, 129, 0.35);
 
-    /* Textos */
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #8b98a9;
-    --text-inverted: #090d11;
+    /* Tinta */
+    --text-primary: #ebecea;
+    --text-secondary: #b5b7b5;
+    --text-muted: #9b9d9b;
+    --text-inverted: #0d1411;
 
-    /* Bordes y Líneas */
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-medium: rgba(255, 255, 255, 0.14);
-    --border-hover: rgba(16, 185, 129, 0.4);
+    /* Reglas */
+    --border-subtle: rgba(205, 225, 212, 0.12);
+    --border-medium: rgba(205, 225, 212, 0.22);
+    --border-hover: rgba(16, 185, 129, 0.5);
 
-    /* Sombras y Luces */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+    /* Sombras: solo para lo que flota (aviso y menú móvil) */
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 20px -8px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 16px 32px -12px rgba(0, 0, 0, 0.6);
 
     /* Tipografías */
     --font-heading: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
     --font-body: 'Atkinson Hyperlegible Next', 'Segoe UI', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 
-    /* Dimensiones y Espaciados */
+    /* Dimensiones: esquinas casi rectas, como papel cortado */
     --max-width: 1160px;
     --header-height: 72px;
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 18px;
+    --radius-sm: 2px;
+    --radius-md: 3px;
+    --radius-lg: 4px;
     --radius-full: 9999px;
 
     /* Transiciones */
@@ -54,13 +61,19 @@
     --transition-smooth: 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --- TEMA CLARO --- */
+/* --- TEMA CLARO: EL MISMO BLOCK DE CÁLCULO DE DÍA, PAPEL VERDE PÁLIDO --- */
 [data-theme="light"] {
-    --bg-main: #f8fafc;
-    --bg-alt: #f1f5f9;
-    --bg-card: #ffffff;
-    --bg-card-hover: #ffffff;
-    --bg-elevated: #e2e8f0;
+    --bg-main: #eef5ef;
+    --bg-alt: #e6efe8;
+    --bg-card: #f6faf7;
+    --bg-card-hover: #fbfdfb;
+    --bg-elevated: #ffffff;
+
+    --grid-line: rgba(30, 110, 70, 0.1);
+    --grid-line-strong: rgba(30, 110, 70, 0.2);
+    --ink-rule: rgba(29, 38, 33, 0.36);
+    --margin-rule: rgba(5, 150, 105, 0.5);
+    --highlight: rgba(16, 185, 129, 0.38);
 
     --accent-emerald: #059669;
     --accent-emerald-light: #10b981;
@@ -69,18 +82,18 @@
     --accent-emerald-medium: rgba(5, 150, 105, 0.16);
     --accent-emerald-border: rgba(5, 150, 105, 0.35);
 
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #64748b;
+    --text-primary: #222423;
+    --text-secondary: #474a48;
+    --text-muted: #5b5e5c;
     --text-inverted: #ffffff;
 
-    --border-subtle: rgba(15, 23, 42, 0.08);
-    --border-medium: rgba(15, 23, 42, 0.15);
-    --border-hover: rgba(5, 150, 105, 0.4);
+    --border-subtle: rgba(29, 38, 33, 0.12);
+    --border-medium: rgba(29, 38, 33, 0.24);
+    --border-hover: rgba(5, 150, 105, 0.5);
 
-    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
-    --shadow-md: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
-    --shadow-lg: 0 20px 40px -15px rgba(15, 23, 42, 0.12);
+    --shadow-sm: 0 2px 6px rgba(29, 38, 33, 0.06);
+    --shadow-md: 0 8px 20px -8px rgba(29, 38, 33, 0.12);
+    --shadow-lg: 0 16px 32px -12px rgba(29, 38, 33, 0.16);
 }
 
 /* --- RESET Y ESTILOS BASE --- */
@@ -194,16 +207,6 @@ button {
 }
 
 /* --- BARRA DE PROGRESO DE SCROLL --- */
-.scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0%;
-    background-color: var(--accent-emerald);
-    z-index: 1000;
-    transition: width 100ms linear;
-}
 
 /* --- NAVEGACIÓN Y HEADER --- */
 .site-header {
@@ -256,23 +259,7 @@ button {
     font-weight: 700;
 }
 
-.accent-dot {
-    color: var(--accent-emerald);
-}
-
 /* Badge de estado en navbar */
-.nav-status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 12px;
-    background-color: var(--accent-emerald-subtle);
-    border: 1px solid var(--accent-emerald-border);
-    border-radius: var(--radius-full);
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    color: var(--accent-emerald);
-}
 
 .nav-right {
     display: flex;
@@ -478,12 +465,6 @@ button {
     position: relative;
 }
 
-.section-alt {
-    background-color: var(--bg-alt);
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-}
-
 .section-header {
     margin-bottom: 56px;
     max-width: 680px;
@@ -533,30 +514,6 @@ button {
     content: '→';
     color: var(--accent-emerald);
     font-weight: 600;
-}
-
-.status-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 10px;
-    border-radius: var(--radius-full);
-    font-family: var(--font-mono);
-    font-size: 0.74rem;
-    font-weight: 500;
-}
-
-.chip-live {
-    background-color: var(--accent-emerald-subtle);
-    color: var(--accent-emerald);
-    border: 1px solid var(--accent-emerald-border);
-}
-
-.status-indicator {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--accent-emerald);
 }
 
 .tech-stack-list {
@@ -660,7 +617,6 @@ button {
 
 .channel-card:hover {
     border-color: var(--accent-emerald-border);
-    box-shadow: var(--shadow-sm);
 }
 
 .channel-icon {
@@ -686,17 +642,6 @@ button {
     font-size: 0.82rem;
     color: var(--text-secondary);
     font-family: var(--font-mono);
-}
-
-.channel-arrow {
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    transition: transform var(--transition-fast), color var(--transition-fast);
-}
-
-.channel-card:hover .channel-arrow {
-    transform: translateX(4px);
-    color: var(--accent-emerald);
 }
 
 /* --- FOOTER --- */
@@ -771,26 +716,6 @@ button {
     color: var(--text-secondary);
 }
 
-.footer-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--text-secondary);
-    padding: 4px 12px;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-subtle);
-    background-color: var(--bg-alt);
-}
-
-.badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--accent-emerald);
-}
-
 /* --- TOAST FLOTANTE --- */
 .toast-notification {
     position: fixed;
@@ -846,15 +771,6 @@ button {
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
     padding: 40px;
-}
-
-.case-status {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 28px;
 }
 
 .case-details {
@@ -942,8 +858,7 @@ button {
     font-size: 1rem;
 }
 
-.nav-link,
-.status-label {
+.nav-link{
     white-space: nowrap;
 }
 
@@ -1078,8 +993,6 @@ button {
 }
 
 /* Tema claro: el verde #059669 no alcanza 4.5:1 en texto pequeño; se usa el tono oscuro */
-[data-theme="light"] .status-label,
-[data-theme="light"] .chip-live,
 [data-theme="light"] .footer-col-title,
 [data-theme="light"] .direct-email-link {
     color: var(--accent-emerald-dark);
@@ -1097,11 +1010,8 @@ button {
     }
 
     /* La pastilla de estado no cabe junto al menú en ancho tablet */
-    .nav-status-badge {
-        display: none;
-    }
 
-    .footer-top {
+.footer-top {
         grid-template-columns: 1fr 1fr;
     }
 
@@ -1236,3 +1146,609 @@ button {
     }
 }
 
+/* ==========================================================================
+   MUNDO: CUADERNO DE INGENIERÍA
+   Cada sección es una hoja del block: encabezado de formulario, margen de 1px,
+   contenido sobre el papel (sin tarjetas con sombra) y el verde solo en lo activo.
+   ========================================================================== */
+
+/* El papel */
+body {
+    background-color: var(--bg-main);
+    background-image:
+        linear-gradient(var(--grid-line-strong) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line-strong) 1px, transparent 1px),
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+    background-position: -1px -1px;
+}
+
+/* Barra superior: el borde del block, sin vidrio */
+.site-header,
+[data-theme="light"] .site-header {
+    background-color: var(--bg-main);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid var(--ink-rule);
+}
+
+.nav-link {
+    isolation: isolate;
+}
+
+.nav-link::after {
+    height: 0.45em;
+    bottom: 0.15em;
+    border-radius: 0;
+    background-color: var(--highlight);
+    z-index: -1;
+}
+
+/* Hojas: separación por reglas y margen izquierdo de 1px */
+.section-container {
+    border-top: 1px solid var(--border-medium);
+}
+
+.hero-section {
+    padding: 56px 0 88px;
+}
+
+.hero-container,
+.section-container > .container {
+    border-left: 1px solid var(--margin-rule);
+    padding-left: 40px;
+}
+
+/* Encabezado de formulario de cada hoja */
+.sheet-head {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    border: 1px solid var(--ink-rule);
+    margin-bottom: 48px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background-color: var(--bg-main);
+}
+
+.sheet-cell {
+    padding: 8px 14px;
+    border-right: 1px solid var(--ink-rule);
+    min-width: 0;
+}
+
+.sheet-cell:last-child {
+    border-right: 0;
+}
+
+.sheet-key {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-right: 6px;
+}
+
+/* Titular: el trazo de resaltador se dibuja una vez al cargar */
+.text-accent {
+    color: var(--text-primary);
+    display: inline;
+    background-image: linear-gradient(var(--highlight), var(--highlight));
+    background-repeat: no-repeat;
+    background-position: 0 86%;
+    background-size: 100% 0.42em;
+    padding: 0 0.06em;
+    animation: trazo-resaltador 900ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;
+}
+
+@keyframes trazo-resaltador {
+    from { background-size: 0% 0.42em; }
+    to { background-size: 100% 0.42em; }
+}
+
+/* Botones dibujados: resaltador sólido y recuadro a lápiz */
+.btn {
+    border-radius: var(--radius-sm);
+}
+
+.btn-primary {
+    background-color: #10b981;
+    color: #04221a;
+}
+
+.btn-primary:hover {
+    background-color: #34d399;
+}
+
+.btn-secondary,
+[data-theme="light"] .btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--ink-rule);
+}
+
+.btn-secondary:hover {
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+/* Enlaces de texto: el mismo trazo de resaltador al pasar */
+.cv-link,
+.footer-links a {
+    position: relative;
+    isolation: isolate;
+}
+
+.cv-link::after,
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.7em;
+    height: 0.45em;
+    background-color: var(--highlight);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--transition-base);
+    z-index: -1;
+}
+
+.footer-links a::after {
+    bottom: 0.9em;
+}
+
+.cv-link {
+    text-decoration-color: var(--ink-rule);
+}
+
+.cv-link:hover,
+.footer-links a:hover {
+    color: var(--text-primary);
+}
+
+.cv-link:hover::after,
+.footer-links a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Listas: guion de cuaderno en vez de flecha */
+.feature-bullets,
+.steps-list {
+    border-top-color: var(--ink-rule);
+}
+
+.feature-bullets li::before {
+    content: '–';
+    color: var(--accent-emerald);
+}
+
+.steps-list li::before {
+    font-family: var(--font-heading);
+}
+
+/* El caso: un ejercicio resuelto sobre el papel, sin tarjeta */
+.case-card {
+    background-color: transparent;
+    border: 0;
+    border-top: 1px solid var(--ink-rule);
+    border-bottom: 1px solid var(--ink-rule);
+    border-radius: 0;
+    padding: 28px 0 32px;
+}
+
+/* Firma: la respuesta encuadrada, como el resultado final de un ejercicio */
+.case-answer {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 8px 8px 16px;
+    border: 3px double var(--text-primary);
+}
+
+.case-answer-label {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.case-details {
+    counter-reset: paso;
+}
+
+.case-item {
+    counter-increment: paso;
+}
+
+.case-item dt::before {
+    content: counter(paso) '. ';
+    color: var(--accent-emerald);
+    font-family: var(--font-heading);
+}
+
+.tech-stack-list {
+    gap: 6px 18px;
+}
+
+.tech-stack-list li {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--text-secondary);
+}
+
+/* Colaboradores: un recorte pegado en la hoja */
+.collab-card {
+    background-color: var(--bg-main);
+    border: 1px solid var(--ink-rule);
+    border-radius: var(--radius-sm);
+}
+
+.collab-logo,
+.collab-avatar {
+    border-radius: var(--radius-sm);
+}
+
+/* Contacto */
+.email-display-box,
+[data-theme="light"] .email-display-box,
+.channel-card,
+[data-theme="light"] .channel-card {
+    background-color: var(--bg-main);
+    border: 1px solid var(--ink-rule);
+    border-radius: var(--radius-sm);
+}
+
+.channel-card:hover {
+    background-color: var(--bg-main);
+    border-color: var(--text-primary);
+}
+
+.btn-copy-inline {
+    background-color: transparent;
+    border-color: var(--ink-rule);
+}
+
+.channel-icon {
+    border-radius: var(--radius-sm);
+}
+
+.theme-toggle,
+.nav-toggle-btn {
+    background-color: transparent;
+    border: 1px solid var(--ink-rule);
+    border-radius: var(--radius-sm);
+}
+
+/* Contacto: una hoja más, alineada al margen como las demás */
+.contact-container {
+    max-width: var(--max-width);
+}
+
+.section-header.text-center,
+.contact-card-top {
+    text-align: left;
+}
+
+.section-header.text-center {
+    margin-left: 0;
+}
+
+.section-header.text-center .section-subtitle {
+    margin-inline: 0;
+}
+
+.contact-card {
+    max-width: 760px;
+}
+
+/* Fin del cuaderno */
+.site-footer {
+    background-color: var(--bg-main);
+    border-top: 3px double var(--ink-rule);
+}
+
+.toast-notification {
+    border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .text-accent {
+        animation: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-container,
+    .section-container > .container {
+        padding-left: 16px;
+        margin-left: 12px;
+    }
+
+    .sheet-head {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        margin-bottom: 32px;
+    }
+
+    .sheet-cell:nth-child(2n) {
+        border-right: 0;
+    }
+
+    .sheet-cell:nth-child(n + 3) {
+        border-top: 1px solid var(--ink-rule);
+    }
+
+    /* Hoja 1 en móvil: hoja y rol arriba; estado y lugar en filas propias */
+    .hero-container .sheet-cell:nth-child(1) {
+        order: 1;
+        border-right: 1px solid var(--ink-rule);
+    }
+
+    .hero-container .sheet-cell:nth-child(3) {
+        order: 2;
+        border-top: 0;
+        border-right: 0;
+    }
+
+    .hero-container .sheet-cell:nth-child(2),
+    .hero-container .sheet-cell:nth-child(4) {
+        grid-column: 1 / -1;
+        border-right: 0;
+        border-top: 1px solid var(--ink-rule);
+    }
+
+    .hero-container .sheet-cell:nth-child(2) {
+        order: 3;
+    }
+
+    .hero-container .sheet-cell:nth-child(4) {
+        order: 4;
+    }
+
+    /* En móvil las hojas decorativas muestran solo número y proyecto */
+    .sheet-head[aria-hidden="true"] .sheet-cell:nth-child(n + 3) {
+        display: none;
+    }
+
+    .case-card {
+        padding: 24px 0 28px;
+    }
+
+    .case-answer {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .case-answer .btn {
+        width: 100%;
+    }
+}
+
+/* --- CUADERNO: AJUSTES DE LA REVISIÓN FINAL ---
+   Tinta y reglas sobre el papel; el verde solo como resaltador o margen. */
+
+/* Acción principal: trazo de resaltador, no rectángulo sólido */
+.btn-primary,
+[data-theme="light"] .btn-primary {
+    min-height: 44px;
+    color: var(--text-primary);
+    background-color: transparent;
+    background-image: linear-gradient(var(--highlight), var(--highlight));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 50%;
+    transition: background-size var(--transition-base), color var(--transition-fast);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    background-size: 100% 100%;
+}
+
+/* Firma: el recuadro de doble borde es el enlace a la demo */
+.case-answer {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 44px;
+    margin-bottom: 32px;
+    padding: 12px 20px;
+    border: 3px double var(--text-primary);
+    color: var(--text-primary);
+    background-image: linear-gradient(var(--highlight), var(--highlight));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 0%;
+    transition: background-size var(--transition-base);
+}
+
+.case-answer:hover {
+    background-size: 100% 100%;
+}
+
+.case-answer-label {
+    padding-right: 14px;
+    border-right: 1px solid var(--ink-rule);
+}
+
+.case-answer-action {
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--accent-emerald);
+}
+
+/* El verde sale de lo que no es activo */
+.case-item dt::before,
+.steps-list li::before,
+.feature-bullets li::before {
+    color: var(--text-secondary);
+}
+
+.channel-icon {
+    color: var(--text-primary);
+}
+
+/* Sin monoespaciado de disfraz */
+.direct-email-link,
+[data-theme="light"] .direct-email-link {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.channel-handle {
+    font-family: var(--font-body);
+}
+
+.footer-col-title,
+[data-theme="light"] .footer-col-title {
+    font-family: var(--font-body);
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--text-primary);
+}
+
+/* Contacto: filas sobre el papel separadas por reglas, sin cajas */
+.email-display-box,
+[data-theme="light"] .email-display-box {
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    border: 0;
+    border-top: 1px solid var(--ink-rule);
+    border-bottom: 1px solid var(--ink-rule);
+    border-radius: 0;
+    padding: 12px 0;
+}
+
+.contact-channels {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-top: 0;
+}
+
+.channel-card,
+[data-theme="light"] .channel-card {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--ink-rule);
+    border-radius: 0;
+    padding: 14px 0;
+}
+
+.channel-card:hover {
+    background-color: transparent;
+    border-color: var(--ink-rule);
+}
+
+.channel-icon {
+    background-color: transparent;
+    border: 0;
+}
+
+/* El mismo trazo de resaltador al pasar en correo y canales */
+.direct-email-link,
+.channel-title {
+    position: relative;
+    isolation: isolate;
+}
+
+.direct-email-link::after,
+.channel-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.1em;
+    height: 0.45em;
+    background-color: var(--highlight);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--transition-base);
+    z-index: -1;
+}
+
+.direct-email-link:hover::after,
+.channel-card:hover .channel-title::after {
+    transform: scaleX(1);
+}
+
+/* Cifras de formulario alineadas */
+.sheet-head,
+.about-text,
+.tools-list {
+    font-variant-numeric: tabular-nums;
+}
+
+/* La última hoja: el pie también va al margen */
+.site-footer .container {
+    border-left: 1px solid var(--margin-rule);
+    padding-left: 40px;
+}
+
+@media (max-width: 768px) {
+    .case-answer {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .site-footer .container {
+        padding-left: 16px;
+        margin-left: 12px;
+    }
+}
+
+/* --- CUADERNO: SEGUNDA RONDA DE LA REVISIÓN FINAL --- */
+
+/* El resaltador cruza la parte baja de las letras, no la caja del botón */
+.btn-primary,
+[data-theme="light"] .btn-primary,
+.btn-primary:hover {
+    background-image: none;
+    background-color: transparent;
+}
+
+.btn-primary > span:first-child {
+    background-image: linear-gradient(var(--highlight), var(--highlight));
+    background-repeat: no-repeat;
+    background-position: 0 86%;
+    background-size: 100% 0.42em;
+    padding: 0 0.06em;
+    transition: background-size var(--transition-base);
+}
+
+.btn-primary:hover > span:first-child {
+    background-size: 100% 0.9em;
+}
+
+@media (max-width: 768px) {
+    /* Hoja 2 en móvil: hoja y autor arriba; proyecto y estado en filas propias */
+    #proyectos .sheet-cell {
+        border-right: 0;
+        border-top: 1px solid var(--ink-rule);
+    }
+
+    #proyectos .sheet-cell:nth-child(1) {
+        order: 1;
+        border-top: 0;
+        border-right: 1px solid var(--ink-rule);
+    }
+
+    #proyectos .sheet-cell:nth-child(4) {
+        order: 2;
+        border-top: 0;
+    }
+
+    #proyectos .sheet-cell:nth-child(2) {
+        order: 3;
+        grid-column: 1 / -1;
+    }
+
+    #proyectos .sheet-cell:nth-child(3) {
+        order: 4;
+        grid-column: 1 / -1;
+    }
+}
