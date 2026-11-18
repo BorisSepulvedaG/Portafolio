@@ -75,8 +75,8 @@
                 <div class="nav-right">
                     <ul id="nav-menu" class="nav-menu">
                         <li><a href="#proyectos" class="nav-link">Proyecto</a></li>
+                        <li><a href="#servicios" class="nav-link">Para negocios</a></li>
                         <li><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
-                        <li><a href="#servicios" class="nav-link">Qué hago</a></li>
                         <li><a href="#contacto" class="nav-link">Contacto</a></li>
                     </ul>
 
@@ -129,7 +129,7 @@
 
                 <div class="hero-actions">
                     <a href="#proyectos" class="btn btn-primary" id="btn-hero-projects">
-                        <span>Ver Mi Menú Digital</span>
+                        <span>Ver el proyecto</span>
                         <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
                             <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
                         </svg>
@@ -142,29 +142,6 @@
                         </svg>
                         <span>Copiar correo</span>
                     </button>
-                </div>
-
-                <!-- Datos verificables del perfil (ver CV) -->
-                <div class="stats-strip">
-                    <div class="stat-card">
-                        <span class="stat-number">AIEP</span>
-                        <span class="stat-label">Ingeniería en Informática, 2025</span>
-                    </div>
-                    <div class="stat-divider" aria-hidden="true"></div>
-                    <div class="stat-card">
-                        <span class="stat-number">v1.7.0</span>
-                        <span class="stat-label">Mi Menú Digital, en fase de auditoría</span>
-                    </div>
-                    <div class="stat-divider" aria-hidden="true"></div>
-                    <div class="stat-card">
-                        <span class="stat-number">Soporte TI</span>
-                        <span class="stat-label">Práctica en Inglobo Chile, 2026</span>
-                    </div>
-                    <div class="stat-divider" aria-hidden="true"></div>
-                    <div class="stat-card">
-                        <span class="stat-number">Homelab</span>
-                        <span class="stat-label">Linux, contenedores, Nextcloud</span>
-                    </div>
                 </div>
             </div>
         </section>
@@ -186,6 +163,14 @@
                             <span class="status-indicator" aria-hidden="true"></span>
                             En fase de auditoría · v1.7.0
                         </span>
+                        <!-- Demo de solo lectura (ADR-003 de Mi Menú Digital). Cambiar al dominio final cuando salga a producción. -->
+                        <a href="https://auditoria.mi-menu-digital.online/menu/demo" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary">
+                            <span>Probar la demo</span>
+                            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+                        </a>
                     </div>
 
                     <dl class="case-details">
@@ -229,21 +214,48 @@
                             <li>Supabase (PostgreSQL + RLS)</li>
                             <li>Cloudflare Pages</li>
                         </ul>
-                        <!-- Demo de solo lectura (ADR-003 de Mi Menú Digital). Cambiar al dominio final cuando salga a producción. -->
-                        <a href="https://auditoria.mi-menu-digital.online/menu/demo" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary">
-                            <span>Ver demo (solo lectura)</span>
-                            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="visually-hidden">(se abre en una pestaña nueva)</span>
-                        </a>
                     </div>
                 </article>
             </div>
         </section>
 
+        <!-- SECCIÓN PARA NEGOCIOS -->
+        <section id="servicios" class="section-container section-alt" aria-labelledby="servicios-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="servicios-heading" class="section-title">Qué puedo hacer por tu negocio</h2>
+                    <p class="section-subtitle">
+                        Lo mismo que hice con Mi Menú Digital, a la medida de tu negocio. Tomo proyectos pequeños y concretos.
+                    </p>
+                </div>
+
+                <div class="offer-layout">
+                    <div>
+                        <h3 class="offer-heading">Lo que hago</h3>
+                        <!-- [confirmar] que esta es la oferta -->
+                        <ul class="feature-bullets offer-list">
+                            <li>Sitio web simple para dar a conocer tu negocio</li>
+                            <li>Carta digital con QR para tu local</li>
+                            <li>Ajustes o mejoras a un sitio que ya tienes</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="offer-heading">Cómo trabajo</h3>
+                        <ol class="steps-list">
+                            <li>Conversamos qué necesitas y qué problema quieres resolver.</li>
+                            <li>Te muestro una propuesta con alcance y plazo antes de empezar.</li>
+                            <li>Lo publico y te explico cómo mantenerlo.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <a href="#contacto" class="btn btn-primary offer-cta">Escríbeme por correo</a>
+            </div>
+        </section>
+
         <!-- SECCIÓN SOBRE MÍ -->
-        <section id="sobre-mi" class="section-container section-alt" aria-labelledby="sobre-mi-heading">
+        <section id="sobre-mi" class="section-container" aria-labelledby="sobre-mi-heading">
             <div class="container">
                 <div class="section-header">
                     <h2 id="sobre-mi-heading" class="section-title">Sobre mí</h2>
@@ -290,25 +302,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN QUÉ HAGO (NEGOCIOS) -->
-        <section id="servicios" class="section-container" aria-labelledby="servicios-heading">
-            <div class="container">
-                <div class="section-header">
-                    <h2 id="servicios-heading" class="section-title">Qué puedo hacer por tu negocio</h2>
-                    <p class="section-subtitle">
-                        Tomo proyectos pequeños y concretos. Te explico qué voy a hacer, cuánto se demora y qué tendrás que mantener después.
-                    </p>
-                </div>
-
-                <!-- [confirmar] que esta es la oferta -->
-                <ul class="feature-bullets offer-list">
-                    <li>Sitio web simple para dar a conocer tu negocio</li>
-                    <li>Carta digital con QR para tu local</li>
-                    <li>Ajustes o mejoras a un sitio que ya tienes</li>
-                </ul>
-            </div>
-        </section>
-
         <!-- SECCIÓN COLABORADORES: pendiente de nombre, enlace, logo y autorización -->
 
         <!-- SECCIÓN CONTACTO -->
@@ -324,7 +317,7 @@
                 <div class="contact-card">
                     <div class="contact-card-top">
                         <p class="contact-email-prompt">
-                            Escríbeme directamente a mi correo principal:
+                            Mi correo:
                         </p>
                         <div class="email-display-box">
                             <a href="mailto:borissepg@gmail.com" class="direct-email-link" id="email-link">borissepg@gmail.com</a>
@@ -389,8 +382,8 @@
                     <span class="footer-col-title">Navegación</span>
                     <ul class="footer-links">
                         <li><a href="#proyectos">Proyecto</a></li>
+                        <li><a href="#servicios">Para negocios</a></li>
                         <li><a href="#sobre-mi">Sobre mí</a></li>
-                        <li><a href="#servicios">Qué hago</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
@@ -410,8 +403,13 @@
 
     <!-- Elemento flotante para notificaciones (Toast) accesible -->
     <div id="toast-notification" class="toast-notification" role="status" aria-live="polite">
-        <svg class="toast-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="toast-icon toast-icon-ok" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <svg class="toast-icon toast-icon-error" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
         </svg>
         <span class="toast-message" id="toast-message">Texto copiado al portapapeles</span>
     </div>

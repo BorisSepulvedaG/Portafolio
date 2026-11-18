@@ -126,11 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Muestra una notificación emergente visual accesible
      * @param {string} message
+     * @param {'ok' | 'error'} type  El error usa otro ícono y dura más, para alcanzar a leer el correo
      */
-    function showToast(message) {
+    function showToast(message, type = 'ok') {
         if (!toastElement || !toastMessage) return;
 
         toastMessage.textContent = message;
+        toastElement.classList.toggle('is-error', type === 'error');
         toastElement.classList.add('is-visible');
 
         if (toastTimeout) {
@@ -139,37 +141,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
         toastTimeout = setTimeout(() => {
             toastElement.classList.remove('is-visible');
-        }, 3200);
+        }, type === 'error' ? 8000 : 3200);
     }
 
     /**
-     * Copia texto al portapapeles de manera segura
+     * Copia con el método antiguo (execCommand). Devuelve true solo si el navegador confirma la copia.
+     * @param {string} text
+     * @returns {boolean}
+     */
+    function legacyCopy(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.setAttribute('readonly', '');
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        let copied = false;
+        try {
+            copied = document.execCommand('copy');
+        } catch (e) {
+            copied = false;
+        }
+        document.body.removeChild(textArea);
+        return copied;
+    }
+
+    /**
+     * Copia texto al portapapeles: API moderna primero, método antiguo si falla o el permiso se niega.
+     * Si ninguno funciona, muestra el correo para que se pueda anotar.
      * @param {string} text
      * @param {string} successFeedback
      */
     async function copyToClipboard(text, successFeedback = '¡Copiado al portapapeles!') {
-        try {
-            if (navigator.clipboard && window.isSecureContext) {
+        let copied = false;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            try {
                 await navigator.clipboard.writeText(text);
-            } else {
-                // Fallback para entornos donde no está disponible el API moderna
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                textArea.style.position = 'fixed';
-                textArea.style.left = '-9999px';
-                document.body.appendChild(textArea);
-                textArea.select();
-                const copied = document.execCommand('copy');
-                document.body.removeChild(textArea);
-                // execCommand devuelve false si el navegador no copió: no mostrar un éxito falso
-                if (!copied) {
-                    throw new Error('execCommand no pudo copiar');
-                }
+                copied = true;
+            } catch (e) {
+                copied = false; // p. ej. permiso negado: se intenta el método antiguo
             }
+        }
+
+        if (!copied) {
+            copied = legacyCopy(text);
+        }
+
+        if (copied) {
             showToast(successFeedback);
-        } catch (err) {
-            console.error('Error al intentar copiar:', err);
-            showToast(`Correo: ${text}`);
+        } else {
+            showToast(`No pude copiar. Mi correo es ${text}`, 'error');
         }
     }
 
@@ -210,8 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         const href = link.getAttribute('href');
                         if (href === `#${id}`) {
                             link.classList.add('active');
+                            link.setAttribute('aria-current', 'true');
                         } else {
                             link.classList.remove('active');
+                            link.removeAttribute('aria-current');
                         }
                     });
                 }
