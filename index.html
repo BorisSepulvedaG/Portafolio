@@ -62,6 +62,7 @@
         <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
         <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
         <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+        <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.64l-19 6.5a.5.5 0 0 0-.03.94l7.93 3.18a2 2 0 0 1 1.11 1.11z"/><path d="m21.85 2.15-10.94 10.94"/></symbol>
         <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
         <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
         <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
@@ -160,13 +161,10 @@
                         </svg>
                     </a>
 
-                    <button type="button" class="btn btn-secondary" id="btn-copy-email" data-email="borissepg@gmail.com">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                        <span>Copiar correo</span>
-                    </button>
+                    <a href="#contacto" class="btn btn-secondary" id="btn-hero-contact">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg>
+                        <span>Escríbeme</span>
+                    </a>
                 </div>
 
                 <a href="assets/cv-boris-sepulveda-frontend.pdf" class="cv-link" download>
@@ -367,34 +365,57 @@
                 <div class="section-header text-center">
                     <h2 id="contacto-heading" class="section-title"><span class="title-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg></span>Contacto</h2>
                     <p class="section-subtitle">
-                        Busco mi primer puesto como desarrollador frontend y tomo proyectos freelance pequeños. Escríbeme por correo o LinkedIn.
+                        Busco mi primer puesto como desarrollador frontend y tomo proyectos freelance pequeños. Escríbeme por aquí o por LinkedIn y te respondo a tu correo.
                     </p>
                 </div>
 
                 <div class="contact-card">
-                    <div class="contact-card-top">
-                        <p class="contact-email-prompt">
-                            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg>Mi correo:
-                        </p>
-                        <div class="email-display-box">
-                            <a href="mailto:borissepg@gmail.com" class="direct-email-link" id="email-link">borissepg@gmail.com</a>
-                            <button type="button" class="btn-copy-inline" id="btn-copy-email-box" aria-label="Copiar correo al portapapeles">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                                <span class="copy-text">Copiar</span>
-                            </button>
+                    <!-- Llega a /api/contacto (Cloudflare Pages Function). Funciona también sin JavaScript:
+                         el servidor redirige de vuelta con ?contacto=<resultado>. -->
+                    <form class="contact-form" id="contact-form" action="/api/contacto" method="post">
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="cf-nombre">Nombre</label>
+                                <input id="cf-nombre" name="nombre" type="text" autocomplete="name" required maxlength="100" aria-describedby="cf-nombre-error">
+                                <p class="form-error" id="cf-nombre-error"></p>
+                            </div>
+                            <div class="form-field">
+                                <label for="cf-correo">Tu correo</label>
+                                <input id="cf-correo" name="correo" type="email" autocomplete="email" required maxlength="254" aria-describedby="cf-correo-error">
+                                <p class="form-error" id="cf-correo-error"></p>
+                            </div>
                         </div>
-                        <a href="assets/cv-boris-sepulveda-frontend.pdf" class="cv-link cv-link-contact" download>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                            <span>Descargar mi CV en PDF</span>
-                        </a>
-                    </div>
+
+                        <div class="form-field">
+                            <label for="cf-mensaje">Mensaje</label>
+                            <textarea id="cf-mensaje" name="mensaje" rows="6" required minlength="10" maxlength="4000" aria-describedby="cf-mensaje-error" placeholder="Cuéntame del puesto o del proyecto."></textarea>
+                            <p class="form-error" id="cf-mensaje-error"></p>
+                        </div>
+
+                        <!-- Trampa para bots: las personas no ven este campo -->
+                        <div class="form-trap" aria-hidden="true">
+                            <label for="cf-sitio">Deja este campo vacío</label>
+                            <input id="cf-sitio" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+                        </div>
+                        <input type="hidden" name="inicio" id="cf-inicio" value="">
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="cf-enviar">
+                                <span class="cf-enviar-texto">Enviar mensaje</span>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-send"/></svg>
+                            </button>
+                            <p class="form-status" id="cf-estado" role="status" aria-live="polite"></p>
+                        </div>
+                    </form>
+
+                    <a href="assets/cv-boris-sepulveda-frontend.pdf" class="cv-link cv-link-contact" download>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span>Descargar mi CV en PDF</span>
+                    </a>
 
                     <div class="contact-channels">
                         <a href="https://github.com/BorisSepulvedaG" target="_blank" rel="noopener noreferrer" class="channel-card">
@@ -458,19 +479,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Elemento flotante para notificaciones (Toast) accesible -->
-    <div id="toast-notification" class="toast-notification" role="status" aria-live="polite">
-        <svg class="toast-icon toast-icon-ok" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        <svg class="toast-icon toast-icon-error" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-        <span class="toast-message" id="toast-message">Texto copiado al portapapeles</span>
-    </div>
 
     <!-- Script de interactividad y comportamiento -->
     <script src="main.js?v=2.2.0"></script>

@@ -2004,3 +2004,161 @@ body {
         font-size: 5rem;
     }
 }
+
+/* --- CONTACTO: FORMULARIO COMO UNA HOJA DE PEDIDO DEL CUADERNO ---
+   Campos en tinta sobre el papel, sin cajas de color. Al enfocar, la regla se
+   oscurece y aparece el resaltador; los errores van en "lápiz rojo" de corrección. */
+
+:root {
+    --pen-red: #ff9585;
+}
+
+[data-theme="light"] {
+    --pen-red: #b42318;
+}
+
+.contact-form {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 8px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 24px;
+}
+
+.form-field {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+}
+
+.form-field label {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+    border: 1px solid var(--ink-rule);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+.form-field input:hover,
+.form-field textarea:hover {
+    border-color: var(--text-secondary);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: var(--text-primary);
+    box-shadow: 0 0 0 3px var(--highlight);
+}
+
+.form-field [aria-invalid="true"] {
+    border-color: var(--pen-red);
+}
+
+.form-field [aria-invalid="true"]:focus {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--pen-red) 30%, transparent);
+}
+
+.form-error {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--pen-red);
+}
+
+.form-error:empty {
+    display: none;
+}
+
+/* Trampa para bots: fuera de la vista y del orden de tabulación */
+.form-trap {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+}
+
+.form-actions .btn[disabled] {
+    cursor: progress;
+    opacity: 0.7;
+}
+
+.form-status {
+    flex: 1 1 260px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.form-status:empty {
+    display: none;
+}
+
+.form-status.is-ok {
+    color: var(--text-primary);
+    padding-left: 10px;
+    border-left: 3px solid var(--accent-emerald);
+}
+
+.form-status.is-error {
+    color: var(--pen-red);
+    padding-left: 10px;
+    border-left: 3px solid var(--pen-red);
+}
+
+.contact-form + .cv-link-contact {
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-field input,
+    .form-field textarea {
+        transition: none;
+    }
+}

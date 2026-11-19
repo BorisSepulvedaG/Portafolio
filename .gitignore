@@ -1,6 +1,8 @@
 # Dependencias y entornos
 node_modules/
 .env*
+.dev.vars*
+.wrangler/
 
 # Archivos del sistema operativo
 .DS_Store
