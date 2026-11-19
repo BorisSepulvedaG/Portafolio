@@ -3,7 +3,7 @@
  * PORTAFOLIO BORIS SEPÚLVEDA · LÓGICA E INTERACTIVIDAD (ES6+)
  * Funcionalidades:
  * - Gestor de tema Claro/Oscuro con persistencia en localStorage y detección de SO
- * - Copia rápida de correo con feedback mediante notificaciones Toast accesibles
+ * - Formulario de contacto validado en el navegador y enviado a /api/contacto
  * - Navegación móvil con soporte para teclado (Escape) y atributos ARIA
  * - Observador de intersección para enlaces activos de navegación
  * ==============================================================================
@@ -96,99 +96,153 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* --- 4. COPIAR CORREO AL PORTAPAPELES & NOTIFICACIÓN TOAST --- */
-    const toastElement = document.getElementById('toast-notification');
-    const toastMessage = document.getElementById('toast-message');
-    let toastTimeout = null;
+    /* --- 4. FORMULARIO DE CONTACTO --- */
+    // El servidor vuelve a validar todo: esto solo da avisos claros antes de enviar.
+    const contactForm = document.getElementById('contact-form');
 
-    /**
-     * Muestra una notificación emergente visual accesible
-     * @param {string} message
-     * @param {'ok' | 'error'} type  El error usa otro ícono y dura más, para alcanzar a leer el correo
-     */
-    function showToast(message, type = 'ok') {
-        if (!toastElement || !toastMessage) return;
+    if (contactForm) {
+        const statusEl = document.getElementById('cf-estado');
+        const submitBtn = document.getElementById('cf-enviar');
+        const submitText = submitBtn ? submitBtn.querySelector('.cf-enviar-texto') : null;
+        const startInput = document.getElementById('cf-inicio');
+        const CORREO_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[a-z]{2,}$/i;
 
-        toastMessage.textContent = message;
-        toastElement.classList.toggle('is-error', type === 'error');
-        toastElement.classList.add('is-visible');
+        const MENSAJES = {
+            ok: 'Mensaje enviado. Te respondo a tu correo lo antes posible.',
+            datos: 'Revisa los campos marcados y vuelve a enviar.',
+            limite: 'Llegaron varios mensajes seguidos desde tu conexión. Prueba de nuevo en unos minutos.',
+            error: 'No se pudo enviar el mensaje. Prueba de nuevo o escríbeme por LinkedIn.'
+        };
 
-        if (toastTimeout) {
-            clearTimeout(toastTimeout);
+        const fields = {
+            nombre: {
+                input: document.getElementById('cf-nombre'),
+                error: document.getElementById('cf-nombre-error'),
+                check: (v) => (v.length === 0 ? 'Escribe tu nombre.' : '')
+            },
+            correo: {
+                input: document.getElementById('cf-correo'),
+                error: document.getElementById('cf-correo-error'),
+                check: (v) => (v.length === 0
+                    ? 'Escribe tu correo para poder responderte.'
+                    : (CORREO_RE.test(v) ? '' : 'Revisa el correo: debería verse como nombre@dominio.cl.'))
+            },
+            mensaje: {
+                input: document.getElementById('cf-mensaje'),
+                error: document.getElementById('cf-mensaje-error'),
+                check: (v) => (v.length < 10 ? 'Escribe un mensaje de al menos 10 caracteres.' : '')
+            }
+        };
+
+        // Con JavaScript, los avisos son los nuestros (en español y junto al campo)
+        contactForm.noValidate = true;
+        if (startInput) startInput.value = String(Date.now());
+
+        function setStatus(message, type) {
+            if (!statusEl) return;
+            statusEl.textContent = message;
+            statusEl.classList.toggle('is-ok', type === 'ok');
+            statusEl.classList.toggle('is-error', type === 'error');
         }
 
-        toastTimeout = setTimeout(() => {
-            toastElement.classList.remove('is-visible');
-        }, type === 'error' ? 8000 : 3200);
-    }
-
-    /**
-     * Copia con el método antiguo (execCommand). Devuelve true solo si el navegador confirma la copia.
-     * @param {string} text
-     * @returns {boolean}
-     */
-    function legacyCopy(text) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.setAttribute('readonly', '');
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-9999px';
-        document.body.appendChild(textArea);
-        textArea.select();
-        let copied = false;
-        try {
-            copied = document.execCommand('copy');
-        } catch (e) {
-            copied = false;
-        }
-        document.body.removeChild(textArea);
-        return copied;
-    }
-
-    /**
-     * Copia texto al portapapeles: API moderna primero, método antiguo si falla o el permiso se niega.
-     * Si ninguno funciona, muestra el correo para que se pueda anotar.
-     * @param {string} text
-     * @param {string} successFeedback
-     */
-    async function copyToClipboard(text, successFeedback = '¡Copiado al portapapeles!') {
-        let copied = false;
-
-        if (navigator.clipboard && window.isSecureContext) {
-            try {
-                await navigator.clipboard.writeText(text);
-                copied = true;
-            } catch (e) {
-                copied = false; // p. ej. permiso negado: se intenta el método antiguo
+        function showFieldError(name, message) {
+            const field = fields[name];
+            if (!field || !field.input) return;
+            field.error.textContent = message;
+            if (message) {
+                field.input.setAttribute('aria-invalid', 'true');
+            } else {
+                field.input.removeAttribute('aria-invalid');
             }
         }
 
-        if (!copied) {
-            copied = legacyCopy(text);
+        /** Valida todos los campos; devuelve el primero con error o null. */
+        function validate() {
+            let firstInvalid = null;
+            Object.keys(fields).forEach((name) => {
+                const field = fields[name];
+                if (!field.input) return;
+                const message = field.check(field.input.value.trim());
+                showFieldError(name, message);
+                if (message && !firstInvalid) firstInvalid = field.input;
+            });
+            return firstInvalid;
         }
 
-        if (copied) {
-            showToast(successFeedback);
-        } else {
-            showToast(`No pude copiar. Mi correo es ${text}`, 'error');
+        // Al corregir un campo marcado, el aviso se va en cuanto queda bien
+        Object.keys(fields).forEach((name) => {
+            const field = fields[name];
+            if (!field.input) return;
+            field.input.addEventListener('input', () => {
+                if (field.input.getAttribute('aria-invalid') === 'true') {
+                    showFieldError(name, field.check(field.input.value.trim()));
+                }
+            });
+        });
+
+        function setSending(sending) {
+            if (!submitBtn) return;
+            submitBtn.disabled = sending;
+            submitBtn.setAttribute('aria-busy', String(sending));
+            if (submitText) submitText.textContent = sending ? 'Enviando…' : 'Enviar mensaje';
         }
-    }
 
-    // Botón de copiar correo en el Hero
-    const heroCopyBtn = document.getElementById('btn-copy-email');
-    if (heroCopyBtn) {
-        heroCopyBtn.addEventListener('click', () => {
-            const email = heroCopyBtn.getAttribute('data-email') || 'borissepg@gmail.com';
-            copyToClipboard(email, '¡Correo copiado: borissepg@gmail.com!');
-        });
-    }
+        contactForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            setStatus('', null);
 
-    // Botón de copiar correo en la sección de Contacto
-    const inlineCopyBtn = document.getElementById('btn-copy-email-box');
-    if (inlineCopyBtn) {
-        inlineCopyBtn.addEventListener('click', () => {
-            copyToClipboard('borissepg@gmail.com', '¡Correo copiado: borissepg@gmail.com!');
+            const firstInvalid = validate();
+            if (firstInvalid) {
+                setStatus(MENSAJES.datos, 'error');
+                firstInvalid.focus();
+                return;
+            }
+
+            setSending(true);
+            let codigo = 'error';
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    headers: { Accept: 'application/json' },
+                    body: new URLSearchParams(new FormData(contactForm))
+                });
+                const data = await response.json().catch(() => ({}));
+                codigo = MENSAJES[data.codigo] ? data.codigo : (response.ok ? 'ok' : 'error');
+
+                if (codigo === 'datos' && Array.isArray(data.campos)) {
+                    validate();
+                    data.campos.forEach((name) => {
+                        const field = fields[name];
+                        if (field && field.input && !field.error.textContent) {
+                            showFieldError(name, 'Revisa este campo.');
+                        }
+                    });
+                }
+            } catch (e) {
+                codigo = 'error'; // sin conexión o el servidor no respondió
+            }
+
+            setSending(false);
+
+            if (codigo === 'ok') {
+                contactForm.reset();
+                if (startInput) startInput.value = String(Date.now());
+                setStatus(MENSAJES.ok, 'ok');
+            } else {
+                setStatus(MENSAJES[codigo], 'error');
+            }
         });
+
+        // Vuelta desde el envío sin JavaScript: /?contacto=<código>#contacto
+        const params = new URLSearchParams(window.location.search);
+        const result = params.get('contacto');
+        if (result && MENSAJES[result]) {
+            setStatus(MENSAJES[result], result === 'ok' ? 'ok' : 'error');
+            params.delete('contacto');
+            const query = params.toString();
+            history.replaceState(null, '', window.location.pathname + (query ? `?${query}` : '') + window.location.hash);
+        }
     }
 
 
