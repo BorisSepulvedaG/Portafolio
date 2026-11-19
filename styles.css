@@ -1881,3 +1881,126 @@ body {
         gap: 24px;
     }
 }
+
+/* --- COLABORADOR: VOLANTE DE AZIMUT PEGADO EN LA HOJA ---
+   Excepción documentada: esta tarjeta lleva la identidad de Azimut
+   (carbón #1f1f1f, naranja #FF4200, Poppins, botón píldora) y no la del cuaderno.
+   Se ve igual en tema claro y oscuro porque es su marca, no la nuestra. */
+
+.collab-azimut {
+    --az-bg: #1f1f1f;
+    --az-orange: #ff4200;
+    --az-ink: #ffffff;
+    --az-ink-soft: rgba(255, 255, 255, 0.78);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding: 32px 36px;
+    background-color: var(--az-bg);
+    color: var(--az-ink);
+    border: 1px solid var(--ink-rule);
+    border-radius: var(--radius-sm);
+    font-family: 'Poppins', var(--font-body);
+}
+
+[data-theme="light"] .collab-azimut {
+    background-color: var(--az-bg);
+}
+
+/* El gesto de su portada: "AZIMUT" enorme en contorno, detrás del contenido */
+.collab-echo {
+    position: absolute;
+    right: -0.04em;
+    bottom: -0.18em;
+    z-index: -1;
+    font-family: 'Poppins', var(--font-body);
+    font-weight: 700;
+    font-size: clamp(4.5rem, 11vw, 9rem);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.16);
+    pointer-events: none;
+    user-select: none;
+}
+
+.collab-azimut .collab-logo {
+    background-color: transparent;
+    padding: 0;
+}
+
+.collab-azimut .collab-name {
+    font-family: 'Poppins', var(--font-body);
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--az-orange);
+    margin-bottom: 2px;
+}
+
+.collab-tagline {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--az-ink);
+    margin-bottom: 12px;
+}
+
+.collab-azimut .collab-desc,
+.collab-azimut .collab-person {
+    color: var(--az-ink-soft);
+}
+
+.collab-azimut .collab-avatar {
+    border-radius: 9999px;
+    border: 2px solid var(--az-orange);
+}
+
+/* Su botón: píldora con borde naranja de 2px; sin relleno en reposo para que el texto naranja llegue a 4.9:1 */
+.collab-azimut .collab-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 26px;
+    border: 2px solid var(--az-orange);
+    border-radius: 9999px;
+    background-color: transparent;
+    color: var(--az-orange);
+    font-family: 'Poppins', var(--font-body);
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.collab-azimut .collab-link:hover {
+    background-color: var(--az-orange);
+    color: var(--az-bg);
+}
+
+.collab-azimut .collab-link:focus-visible {
+    outline: 2px solid var(--az-ink);
+    outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    .collab-azimut {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 24px 20px;
+    }
+
+    .collab-azimut .collab-logo {
+        width: 52px;
+        height: 52px;
+    }
+
+    /* En móvil el contorno va arriba, para no quedar detrás del botón */
+    .collab-echo {
+        top: -0.12em;
+        bottom: auto;
+        font-size: 5rem;
+    }
+}
