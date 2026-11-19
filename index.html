@@ -23,13 +23,13 @@
     <!-- Tipografías: Bricolage Grotesque (títulos), Atkinson Hyperlegible Next (texto), JetBrains Mono (código) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&family=Bricolage+Grotesque:opsz,wght@12..96,600..700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&family=Bricolage+Grotesque:opsz,wght@12..96,600..700&family=JetBrains+Mono:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Tema antes del primer pintado (evita parpadeo en tema claro) -->
-    <script src="theme-init.js?v=2.1.0"></script>
+    <script src="theme-init.js?v=2.2.0"></script>
 
     <!-- Hoja de estilos principal -->
-    <link rel="stylesheet" href="styles.css?v=2.1.0">
+    <link rel="stylesheet" href="styles.css?v=2.2.0">
 
     <!-- Datos estructurados JSON-LD (SEO) -->
     <script type="application/ld+json">
@@ -338,19 +338,22 @@
                     <h2 id="colaboradores-heading" class="section-title"><span class="title-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-users"/></svg></span>Colaboradores</h2>
                 </div>
 
-                <article class="collab-card">
+                <!-- Tarjeta con la identidad de Azimut (carbón, naranja #FF4200, Poppins), como un volante pegado en la hoja -->
+                <article class="collab-card collab-azimut">
+                    <span class="collab-echo" aria-hidden="true">AZIMUT</span>
                     <img src="assets/azimut-logo.png" alt="Logo de Azimut" class="collab-logo" width="72" height="72" loading="lazy" decoding="async">
                     <div class="collab-body">
                         <h3 class="collab-name">Azimut</h3>
+                        <p class="collab-tagline">Marketing digital · Creatividad</p>
                         <p class="collab-desc">Equipo de marketing digital: diseño, locución y estrategia para marcas.</p>
                         <div class="collab-person">
                             <img src="assets/sirmofin-avatar.png" alt="Avatar de SirMofin" class="collab-avatar" width="40" height="40" loading="lazy" decoding="async">
                             <span>Rodrigo (SirMofin), fundador</span>
                         </div>
                     </div>
-                    <a href="https://sirmofin.online/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary collab-link">
-                        <span>Visitar sitio</span>
-                        <span class="visually-hidden">de Azimut (se abre en una pestaña nueva)</span>
+                    <a href="https://sirmofin.online/" target="_blank" rel="noopener noreferrer" class="collab-link">
+                        <span>¡Visitar Azimut!</span>
+                        <span class="visually-hidden">(se abre en una pestaña nueva)</span>
                     </a>
                 </article>
             </div>
@@ -470,6 +473,6 @@
     </div>
 
     <!-- Script de interactividad y comportamiento -->
-    <script src="main.js?v=2.1.0"></script>
+    <script src="main.js?v=2.2.0"></script>
 </body>
 </html>
