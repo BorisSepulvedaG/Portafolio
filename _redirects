@@ -2,3 +2,4 @@
 # Cloudflare Pages publica todo el repo (no hay paso de build), así que se redirigen al inicio.
 /README.md       /  302
 /.gitignore      /  302
+/functions/*    /  302
